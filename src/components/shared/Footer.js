@@ -8,20 +8,19 @@ import {
 } from "react-icons/fa";
 
 import { BiMap } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import React from "react";
 
 const Footer = () => {
   return (
     <>
       <footer>
-        <div className='footer__area grey-bg pt-100'>
+        <div className='footer__area grey-bg pt-20'>
           <div className='footer__top'>
             <div className='container'>
               <div className='row'>
                 <div className='col-xl-2 col-lg-2 col-md-4 col-sm-6'>
                   <div className='footer__widget mb-45'>
-                    <div className='footer__widget-title'>
+                    {/* <div className='footer__widget-title'>
                       <h4>Links</h4>
                     </div>
                     <div className='footer__widget-content'>
@@ -47,7 +46,7 @@ const Footer = () => {
                           </li>
                         </ul>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className='col-xl-2 offset-xl-1 col-lg-2 offset-lg-1 col-md-4 col-sm-6'>
@@ -118,16 +117,16 @@ const Footer = () => {
           <div className='footer__copyright'>
             <div className='container'>
               <div className='row align-items-center'>
-                <div className='col-xl-6 col-lg-6 col-md-6'>
+                <div className='col-xl-8 col-lg-8 col-md-8'>
                   <div className='footer__copyright-text'>
                     <p>
-                      Copyright ©{new Date().getFullYear} Malawi Sun Hotel.
+                      Copyright ©{new Date().getFullYear()} Malawi Sun Hotel.
                       Created by:{" "}
                       <a href='kond94.github.io'> Kondwerani Kamsesa</a>
                     </p>
                   </div>
                 </div>
-                <div className='col-xl-6 col-lg-6 col-md-6'>
+                <div className='col-xl-4 col-lg-4 col-md-4'>
                   <div className='footer__social theme-social f-right'>
                     <ul>
                       <li>

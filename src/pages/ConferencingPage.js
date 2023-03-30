@@ -7,11 +7,12 @@ import useGlobalContext from "../hooks/useGlobalContext";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-function AccommodationPage() {
+function ConferencingPage() {
   const location = useLocation();
-  const room = location.state.room;
-  const [currentPhoto, setCurrentPhoto] = useState(room?.displayPhoto);
-
+  const conferenceRoom = location.state.conferenceRoom;
+  const [currentPhoto, setCurrentPhoto] = useState(
+    conferenceRoom?.displayPhoto
+  );
   const { setForm } = useGlobalContext();
   const { setFormState } = useGlobalContext();
   const { handleShowBookingModal } = useGlobalContext();
@@ -33,7 +34,7 @@ function AccommodationPage() {
                   </aside>
                   <main className='col-md-4'>
                     <article>
-                      <h3 className='title'>The {room.name}</h3>
+                      <h3 className='title'>The {conferenceRoom.name}</h3>
                       <div>
                         <ul className='rating-stars'>
                           <li className='stars-active'>
@@ -59,13 +60,13 @@ function AccommodationPage() {
                       <div className='mb-3'>
                         <h6>Short description</h6>
                         <ul className='list-dots mb-0'>
-                          <li>{room.description}</li>
+                          <li>{conferenceRoom.capacity}</li>
                         </ul>
                       </div>
 
                       <div className='mb-3'>
                         <var className='price h4'>
-                          Mk {room.price.toLocaleString("en-US")}
+                          Mk {conferenceRoom.price.toLocaleString("en-US")}
                         </var>{" "}
                         <br />
                       </div>
@@ -74,18 +75,20 @@ function AccommodationPage() {
                         <Button
                           variant='warning'
                           onClick={() => {
-                            setForm("1");
-                            setFormState({ room: room.id.toString() });
+                            setForm("2");
+                            setFormState({
+                              conferenceRoom: conferenceRoom.id.toString(),
+                            });
                             handleShowBookingModal();
                           }}
                           style={{ color: "#fff" }}
                         >
-                          Reserve Room
+                          Book Conference
                         </Button>
                       </div>
                       <article className='gallery-wrap'>
                         <div className='thumbs-wrap'>
-                          {room.photos.map((photo) => (
+                          {conferenceRoom.photos.map((photo) => (
                             <img
                               key={photo}
                               src={photo}
@@ -112,18 +115,18 @@ function AccommodationPage() {
                       <dd className='col-sm-9'>Amenity Icon</dd>
                     </dl>
                   </aside> */}
-                  <div>
+                  {/* <div>
                     <h5>Amenities</h5>
                     <ul className='list-check'>
-                      {room.amenities.map((amenity) => (
-                        <div key={amenity.name}>
+                      {conferenceRoom.amenities.map((amenity) => (
+                        <>
                           <li>{amenity.name}</li>
-                          {/* <dt className='col-sm-3'>{amenity.name}</dt> */}
-                          {/* <dd className='col-sm-9'>{amenity.icon}</dd> */}
-                        </div>
+                          <dt className='col-sm-3'>{amenity.name}</dt>
+                          <dd className='col-sm-9'>{amenity.icon}</dd>
+                        </>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
                 <hr />
               </div>
@@ -136,4 +139,4 @@ function AccommodationPage() {
   );
 }
 
-export default AccommodationPage;
+export default ConferencingPage;

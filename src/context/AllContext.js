@@ -10,7 +10,10 @@ const AllContext = ({ children }) => {
   const [error, setError] = useState([]);
   const [promotionRooms, setPromotionRooms] = useState([]);
   const [banquetRooms, setBanquetRooms] = useState([]);
+  const [banquetAddOns, setBanquetAddOns] = useState([]);
+
   const [conferenceRooms, setConferenceRooms] = useState([]);
+  const [conferenceAddOns, setConferenceAddOns] = useState([]);
   const [meals, setMeals] = useState([]);
   const [packages, setPackages] = useState([]);
   const [rooms, setRooms] = useState([]);
@@ -108,6 +111,29 @@ const AllContext = ({ children }) => {
 
     axios
       .get(
+        process.env.REACT_APP_API_URL + "/api/banquet-addons?populate=deep",
+        config
+      )
+      .then(({ data }) => {
+        const banqAddOns = data.data.map((banquetAddOn) => {
+          return {
+            id: banquetAddOn.id,
+            name: banquetAddOn.attributes.name,
+            icon: banquetAddOn.attributes.icon,
+            price: banquetAddOn.attributes.price,
+          };
+        });
+
+        // console.log("Banquet AddOns: " + JSON.stringify(banqAddOns, null, 2));
+        setConferenceAddOns(banqAddOns);
+      })
+      .catch((error) => {
+        console.log(error);
+
+        setError(error);
+      });
+    axios
+      .get(
         process.env.REACT_APP_API_URL + "/api/conference-rooms?populate=deep",
         config
       )
@@ -128,6 +154,30 @@ const AllContext = ({ children }) => {
 
         // console.log("Coference Rooms: " + JSON.stringify(confRooms, null, 2));
         setConferenceRooms(confRooms);
+      })
+      .catch((error) => {
+        console.log(error);
+
+        setError(error);
+      });
+
+    axios
+      .get(
+        process.env.REACT_APP_API_URL + "/api/conference-addons?populate=deep",
+        config
+      )
+      .then(({ data }) => {
+        const confAddOns = data.data.map((conferenceAddOn) => {
+          return {
+            id: conferenceAddOn.id,
+            name: conferenceAddOn.attributes.name,
+            icon: conferenceAddOn.attributes.icon,
+            price: conferenceAddOn.attributes.price,
+          };
+        });
+
+        // console.log("Coference AddOns: " + JSON.stringify(confAddOns, null, 2));
+        setConferenceAddOns(confAddOns);
       })
       .catch((error) => {
         console.log(error);
@@ -231,7 +281,9 @@ const AllContext = ({ children }) => {
     error,
     promotionRooms,
     banquetRooms,
+    banquetAddOns,
     conferenceRooms,
+    conferenceAddOns,
     meals,
     packages,
     rooms,

@@ -101,8 +101,10 @@ const AppHeader = () => {
                               {conferenceRooms.map((conferenceRoom) => (
                                 <li key={conferenceRoom.id.toString()}>
                                   <NavLink
-                                    to='/accommodation'
-                                    state={{ room: conferenceRoom.name }}
+                                    to='/conferencing'
+                                    state={{
+                                      conferenceRoom: conferenceRoom,
+                                    }}
                                   >
                                     {conferenceRoom.name}
                                   </NavLink>
@@ -157,7 +159,7 @@ const AppHeader = () => {
                       <Button
                         size='lg'
                         className='mb-10'
-                        variant='primary'
+                        variant='warning'
                         onClick={() => {
                           setForm("0");
                           setFormState(null);
