@@ -1,4 +1,4 @@
-import "./App.css";
+import "./Pages.css";
 
 import AppHeader from "../components/shared/AppHeader";
 import Button from "react-bootstrap/Button";
@@ -116,11 +116,7 @@ function AccommodationPage() {
                     <h5>Amenities</h5>
                     <ul className='list-check'>
                       {room.amenities.map((amenity) => (
-                        <div key={amenity.name}>
-                          <li>{amenity.name}</li>
-                          {/* <dt className='col-sm-3'>{amenity.name}</dt> */}
-                          {/* <dd className='col-sm-9'>{amenity.icon}</dd> */}
-                        </div>
+                        <li key={amenity.name}>{amenity.name}</li>
                       ))}
                     </ul>
                   </div>

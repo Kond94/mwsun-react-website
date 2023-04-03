@@ -1,4 +1,4 @@
-import "./App.css";
+import "./Pages.css";
 
 import AppHeader from "../components/shared/AppHeader";
 import Button from "react-bootstrap/Button";
