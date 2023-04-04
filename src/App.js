@@ -20,7 +20,6 @@ function App() {
           <ScrollTop />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/home' element={<Home />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/accommodation' element={<AccommodationPage />} />
             <Route path='/conferencing' element={<ConferencingPage />} />

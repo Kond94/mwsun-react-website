@@ -33,7 +33,7 @@ const AppHeader = () => {
           <div
             id='header__sticky'
             className={
-              location.pathname !== "/home"
+              location.pathname !== "/"
                 ? "sticky header__bottom"
                 : stickyMenu
                 ? "sticky header__bottom"
@@ -67,11 +67,11 @@ const AppHeader = () => {
                     <div className='main-menu menu_wrapper_one'>
                       <nav id='mobile-menu'>
                         <ul>
-                          {location.pathname === "/home" ? (
+                          {location.pathname === "/" ? (
                             <></>
                           ) : (
                             <li>
-                              <NavLink to='/home'>Home</NavLink>
+                              <NavLink to='/'>Home</NavLink>
                             </li>
                           )}
 

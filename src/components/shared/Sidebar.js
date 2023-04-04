@@ -71,7 +71,7 @@ const Sidebar = ({ show, handleClose }) => {
                     >
                       <div className='side_navBar'>
                         <div className='about iconAdd'>
-                          <NavLink to='/home'>Home </NavLink>
+                          <NavLink to='/'>Home </NavLink>
                         </div>
                         <Collapsible
                           trigger={
