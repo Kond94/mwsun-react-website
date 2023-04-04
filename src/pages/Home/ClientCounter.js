@@ -6,7 +6,7 @@ const ClientCounter = () => {
     <>
       <section className='counter__area pb-100'>
         <div className='container'>
-          <h3 style={{ textAlign: "center" }}>We take pride in our numbers</h3>
+          <h2 style={{ textAlign: "center" }}>We take pride in our numbers</h2>
 
           <div
             className='counter__inner white-bg wow fadeInUp'

@@ -1,15 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import About from "./pages/About/About";
+import AboutPage from "./pages/AboutPage";
 import AccommodationPage from "./pages/AccommodationPage";
 import AllContext from "./context/AllContext";
+import BanquetingPage from "./pages/BanquetingPage";
 import ConferencingPage from "./pages/ConferencingPage";
 import Home from "./pages/Home/Home";
-import Restaurant from "./pages/Restaurant/Restaurant";
-import Rooms from "./pages/Accommodation/Rooms";
+import RestaurantPage from "./pages/Restaurant/RestaurantPage";
 import ScrollTop from "./components/ScrollTop";
-import Team from "./pages/Team/Team";
 import { ToastContainer } from "react-toastify";
+import TeamPage from "./pages/TeamPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -20,12 +21,14 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/home' element={<Home />} />
-            <Route path='/about' element={<About />} />
+            <Route path='/about' element={<AboutPage />} />
             <Route path='/accommodation' element={<AccommodationPage />} />
             <Route path='/conferencing' element={<ConferencingPage />} />
-            <Route path='/team' element={<Team />} />
-            <Route path='/rooms' element={<Rooms />} />
-            <Route path='/restaurant' element={<Restaurant />} />
+            <Route path='/banqueting' element={<BanquetingPage />} />
+            <Route path='/restaurant' element={<RestaurantPage />} />
+            <Route path='/contact' element={<ContactPage />} />
+            <Route path='/about' element={<AboutPage />} />
+            <Route path='/team' element={<TeamPage />} />
           </Routes>
           <ToastContainer />
         </BrowserRouter>

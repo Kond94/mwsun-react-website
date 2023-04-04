@@ -44,7 +44,7 @@ const AllContext = ({ children }) => {
 
     const config = {
       headers: {
-        Authorization: `Bearer e49abe329355de303a9dcb2321f38bdcf9dddc6809e2f4bcf959d0956a33fbab9f88f424e043b0a6c7ffbaf2e73f8316336ac0f1bc09154a1580cae07585192b84eb73b279822a736478be372b7bed17f09a62a682c9cdbb0208fb5e700aca7c42dd4de94bd21f3870a07c4726a04400e00a6444af8213ebc8db3974d59f7cf8`,
+        Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
       },
     };
 
@@ -125,7 +125,7 @@ const AllContext = ({ children }) => {
         });
 
         // console.log("Banquet AddOns: " + JSON.stringify(banqAddOns, null, 2));
-        setConferenceAddOns(banqAddOns);
+        setBanquetAddOns(banqAddOns);
       })
       .catch((error) => {
         console.log(error);
@@ -251,12 +251,17 @@ const AllContext = ({ children }) => {
       });
 
     axios
-      .get(process.env.REACT_APP_API_URL + "/api/meals?populate=deep", config)
+      .get(
+        process.env.REACT_APP_API_URL +
+          "/api/meals?populate=deep&pagination[limit]=-1",
+        config
+      )
       .then(({ data }) => {
         const meas = data.data.map((meal) => {
           return {
             id: meal.id,
             name: meal.attributes.name,
+            category: meal.attributes.category,
             description: meal.attributes.description,
             price: meal.attributes.price,
             displayPhoto: meal.attributes.displayPhoto?.data?.attributes?.url,

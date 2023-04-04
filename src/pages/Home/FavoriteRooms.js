@@ -12,7 +12,7 @@ const FavoriteRooms = ({ promotionRooms }) => {
                 className='section__title section__title-3 text-center mb-90 wow fadeInUp'
                 data-wow-delay='.2s'
               >
-                <span>A sneak peak</span>
+                <h3>A sneak peak</h3>
                 <h2>Of Our Rooms</h2>
               </div>
             </div>

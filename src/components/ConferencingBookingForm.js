@@ -56,12 +56,13 @@ const DatePickerField = ({ ...props }) => {
     />
   );
 };
+
 const ConferencingBookingForm = ({ formState }) => {
   const { conferenceRooms } = useGlobalContext();
   const { conferenceAddOns } = useGlobalContext();
   const { handleCloseBookingModal } = useGlobalContext();
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const notify = () =>
     toast.success(
       "You have successfully made your reservation. Please wait for a response from our team.",
@@ -75,11 +76,10 @@ const ConferencingBookingForm = ({ formState }) => {
     } else {
       arr.splice(arr.indexOf(newId), 1); //deleting
     }
-    console.log(arr);
     setFieldValue("conference_addons", arr);
   };
+
   const postData = async (data) => {
-    console.log("Here");
     setIsSubmitting(true);
     await axios
       .post(
@@ -95,7 +95,7 @@ const ConferencingBookingForm = ({ formState }) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer e49abe329355de303a9dcb2321f38bdcf9dddc6809e2f4bcf959d0956a33fbab9f88f424e043b0a6c7ffbaf2e73f8316336ac0f1bc09154a1580cae07585192b84eb73b279822a736478be372b7bed17f09a62a682c9cdbb0208fb5e700aca7c42dd4de94bd21f3870a07c4726a04400e00a6444af8213ebc8db3974d59f7cf8`,
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
           },
         }
       )
@@ -110,6 +110,7 @@ const ConferencingBookingForm = ({ formState }) => {
 
     setIsSubmitting(false);
   };
+
   return (
     <>
       <Formik
@@ -196,7 +197,7 @@ const ConferencingBookingForm = ({ formState }) => {
               </ErrorMessage>
             </Form.Group>
             <Form.Group as={Col} controlId='room'>
-              <Form.Label>Room</Form.Label>
+              <Form.Label>Conference Room</Form.Label>
               <Form.Select
                 id='conference_room'
                 isValid={touched.conference_room && !errors.conference_room}

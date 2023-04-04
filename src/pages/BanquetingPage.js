@@ -9,19 +9,19 @@ import useGlobalContext from "../hooks/useGlobalContext";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-function AccommodationPage() {
+function BanquetingPage() {
   const location = useLocation();
-  const room = location.state.room;
-  const [currentPhoto, setCurrentPhoto] = useState(room.displayPhoto);
-
+  const banquetRoom = location.state.banquetRoom;
+  const [currentPhoto, setCurrentPhoto] = useState(banquetRoom?.displayPhoto);
   const { setForm } = useGlobalContext();
   const { setFormState } = useGlobalContext();
   const { handleShowBookingModal } = useGlobalContext();
+
   return (
     <>
-      <PageHelmet pageTitle='Accommodation' />
+      <PageHelmet pageTitle='Banqueting' />
       <AppHeader />
-      <PageHeader title='Accommodation' subtitle={room.name} />
+      <PageHeader title='Banqueting' subtitle={banquetRoom.name} />
       <div>
         <section className='section-content padding-y bg'>
           <div className='container'>
@@ -37,39 +37,20 @@ function AccommodationPage() {
                   </aside>
                   <main className='col-md-4'>
                     <article>
-                      <h3 className='title'>The {room.name}</h3>
-                      <div>
-                        {/* <ul className='rating-stars'>
-                          <li className='stars-active'>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>
-                          </li>
-                          <li>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>
-                          </li>
-                        </ul>
-                        <span className='label-rating mr-3 text-muted'>
-                          7/10
-                        </span> */}
-                      </div>
+                      <h3 className='title'>The {banquetRoom.name}</h3>
 
                       <hr />
 
                       <div className='mb-3'>
                         <h6>Short description</h6>
                         <ul className='list-dots mb-0'>
-                          <li>{room.description}</li>
+                          <li>{banquetRoom.capacity}</li>
                         </ul>
                       </div>
 
                       <div className='mb-3'>
                         <var className='price h4'>
-                          Mk {room.price.toLocaleString("en-US")}
+                          Mk {banquetRoom.price.toLocaleString("en-US")}
                         </var>{" "}
                         <br />
                       </div>
@@ -78,18 +59,20 @@ function AccommodationPage() {
                         <Button
                           variant='warning'
                           onClick={() => {
-                            setForm("1");
-                            setFormState({ room: room.id.toString() });
+                            setForm("3");
+                            setFormState({
+                              banquetRoom: banquetRoom.id.toString(),
+                            });
                             handleShowBookingModal();
                           }}
                           style={{ color: "#fff" }}
                         >
-                          Reserve Room
+                          Book Banquet
                         </Button>
                       </div>
                       <article className='gallery-wrap'>
                         <div className='thumbs-wrap'>
-                          {room.photos.map((photo) => (
+                          {banquetRoom.photos.map((photo) => (
                             <img
                               key={photo}
                               src={photo}
@@ -106,21 +89,12 @@ function AccommodationPage() {
               </div>
             </article>
 
-            <article className='card mt-5'>
+            {/* <article className='card mt-5'>
               <div className='card-body'>
-                <div className='row'>
-                  <div>
-                    <h5>Amenities</h5>
-                    <ul className='list-check'>
-                      {room.amenities.map((amenity) => (
-                        <li key={amenity.name}>{amenity.name}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <div className='row'></div>
                 <hr />
               </div>
-            </article>
+            </article> */}
           </div>
         </section>
       </div>
@@ -129,4 +103,4 @@ function AccommodationPage() {
   );
 }
 
-export default AccommodationPage;
+export default BanquetingPage;

@@ -1,6 +1,9 @@
+/* eslint-disable eqeqeq */
+
 import React, { useState } from "react";
 
 import AccommodationBookingForm from "./AccommodationBookingForm";
+import BanquetingBookingForm from "./BanquetingBookingFrorm";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ConferencingBookingForm from "./ConferencingBookingForm";
 import Container from "react-bootstrap/Container";
@@ -15,12 +18,16 @@ const BookingModal = ({ showBookingModal, onHideBookingModal }) => {
   const bookingForms = [
     { name: "Accommodation", value: "1" },
     { name: "Conference", value: "2" },
+    { name: "Banqueting", value: "3" },
+    // { name: "Package", value: "4" },
   ];
-
   return (
     <Modal show={showBookingModal} onHide={() => onHideBookingModal()}>
       <Modal.Header closeButton>
-        <Modal.Title>Online Booking</Modal.Title>
+        <Modal.Title>
+          {form == "0" ? "Online" : bookingForms[form - 1].name}
+          {" Booking"}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -78,7 +85,10 @@ const BookingModal = ({ showBookingModal, onHideBookingModal }) => {
             formState={formState}
           />
         ) : form === "3" ? (
-          <AccommodationBookingForm />
+          <BanquetingBookingForm
+            onHide={onHideBookingModal}
+            formState={formState}
+          />
         ) : (
           <></>
         )}

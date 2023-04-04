@@ -26,11 +26,11 @@ const schema = yup.object().shape({
       `^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$`,
       "Please enter a valid phone number"
     ),
-  arrivalDate: yup.date().required("This field is required"),
-  departureDate: yup.date().required("This field is required"),
-  room: yup.number().required("This field is required"),
-  adults: yup.number().required("This field is required"),
-  children: yup.number().required("This field is required"),
+  date: yup.date().required("This field is required"),
+  time: yup.string().required("This field is required"),
+  banquet_room: yup.string().required("This field is required"),
+  participants: yup.number().required("This field is required"),
+  banquet_addons: yup.array().required("This field is required"),
   specialRequest: yup.string().required("This field is required"),
 });
 
@@ -56,28 +56,39 @@ const DatePickerField = ({ ...props }) => {
     />
   );
 };
-const AccommodationBookingForm = ({ formState }) => {
-  const { rooms } = useGlobalContext();
+
+const BanquetingBookingForm = ({ formState }) => {
+  const { banquetRooms } = useGlobalContext();
+  const { banquetAddOns } = useGlobalContext();
   const { handleCloseBookingModal } = useGlobalContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const notify = () =>
     toast.success(
       "You have successfully made your reservation. Please wait for a response from our team.",
-      { autoClose: 6000 }
+      { autoClose: false }
     );
+
+  const handleAddons = (arr, newId, setFieldValue) => {
+    if (!arr.includes(newId)) {
+      //checking weather array contain the id
+      arr.push(newId); //adding to array because value doesnt exists
+    } else {
+      arr.splice(arr.indexOf(newId), 1); //deleting
+    }
+    setFieldValue("banquet_addons", arr);
+  };
 
   const postData = async (data) => {
     setIsSubmitting(true);
     await axios
       .post(
-        process.env.REACT_APP_API_URL + "/api/accommodation-bookings",
+        process.env.REACT_APP_API_URL + "/api/conference-bookings",
         {
           data: {
             ...data,
-            arrivalDate: data.arrivalDate.toISOString().split("T")[0],
-            departureDate: data.departureDate.toISOString().split("T")[0],
-            room: data.room,
+            date: data.commencementDate.toISOString().split("T")[0],
+            banquet_room: data.banquet_room,
           },
         },
 
@@ -110,11 +121,11 @@ const AccommodationBookingForm = ({ formState }) => {
           lastName: "",
           email: "",
           phone: "",
-          arrivalDate: new Date(),
-          departureDate: "",
-          room: formState === null ? "1" : formState.room,
-          adults: 1,
-          children: 0,
+          date: new Date(),
+          time: "",
+          participants: 1,
+          banquet_room: formState === null ? "1" : formState.banquetRoom,
+          banquet_addons: [],
           specialRequest: "None",
         }}
       >
@@ -122,13 +133,12 @@ const AccommodationBookingForm = ({ formState }) => {
           handleSubmit,
           handleChange,
           setFieldValue,
-          handleBlur,
           values,
           touched,
           isValid,
           errors,
         }) => (
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Row className='mb-3'>
               <Form.Group as={Col}>
                 <Form.Label>First Name</Form.Label>
@@ -184,75 +194,103 @@ const AccommodationBookingForm = ({ formState }) => {
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>
+            <Form.Group as={Col} controlId='room'>
+              <Form.Label>Banquet Room</Form.Label>
+              <Form.Select
+                id='banquet_room'
+                isValid={touched.banquet_room && !errors.banquet_room}
+                value={values.banquet_room}
+                name='banquet_room'
+                onChange={handleChange}
+              >
+                {banquetRooms.map((banquetRoom) => (
+                  <option
+                    key={banquetRoom.id.toString()}
+                    value={banquetRoom.id}
+                  >
+                    {banquetRoom.name} (Mk
+                    {banquetRoom.price.toLocaleString("en-US")})
+                  </option>
+                ))}
+              </Form.Select>
+              <ErrorMessage name='banquet_room'>
+                {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+              </ErrorMessage>
+            </Form.Group>
+            <Form.Group as={Col} controlId='addOns'>
+              <Form.Label>Add Ons</Form.Label>
+
+              <div className='mb-3'>
+                {banquetAddOns.map((addon) => (
+                  <Form.Check
+                    key={addon.id.toString()}
+                    inline
+                    label={
+                      addon.name +
+                      " (Mk " +
+                      addon.price.toLocaleString("en-US") +
+                      ")"
+                    }
+                    onClick={() =>
+                      handleAddons(
+                        values.banquet_addons,
+                        addon.id,
+                        setFieldValue
+                      )
+                    }
+                    name={addon.name}
+                    type='checkbox'
+                    id={addon.id}
+                  />
+                ))}
+              </div>
+            </Form.Group>
+
             <Row className='mb-3'>
               <Form.Group as={Col}>
-                <Form.Label>Arrival Date</Form.Label>
+                <Form.Label>Date</Form.Label>
                 <DatePickerField
-                  name='arrivalDate'
+                  name='date'
                   touched={touched}
                   errors={errors}
                 />
-                <ErrorMessage name='arrivalDate'>
+                <ErrorMessage name='date'>
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
-
-              <Form.Group as={Col}>
-                <Form.Label>Departure Date</Form.Label>
-                <DatePickerField
-                  name='departureDate'
-                  touched={touched}
-                  errors={errors}
-                />
-                <ErrorMessage name='departureDate'>
+              <Form.Group as={Col} controlId='time'>
+                <Form.Label>Commencement Time</Form.Label>
+                <Form.Select
+                  id='time'
+                  isValid={touched.time && !errors.time}
+                  value={values.time}
+                  name='time'
+                  onChange={handleChange}
+                >
+                  <option key={1} value={"Morning"}>
+                    Afternoon{" "}
+                  </option>
+                  <option key={2} value={"Afternoon"}>
+                    Evening{" "}
+                  </option>
+                </Form.Select>
+                <ErrorMessage name='time'>
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
-            <Form.Group as={Col} controlId='room'>
-              <Form.Label>Room Type</Form.Label>
-              <Form.Select
-                id='room'
-                isValid={touched.room && !errors.room}
-                value={values.room}
-                name='room'
-                onChange={handleChange}
-              >
-                {rooms.map((room) => (
-                  <option key={room.id.toString()} value={room.id}>
-                    {room.name} (Mk{room.price.toLocaleString("en-US")})
-                  </option>
-                ))}
-              </Form.Select>
-              <ErrorMessage name='room'>
-                {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-              </ErrorMessage>
-            </Form.Group>
+
             <Row className='mb-4'>
               <Form.Group as={Col}>
-                <Form.Label>Adults</Form.Label>
+                <Form.Label>Participants</Form.Label>
                 <Form.Control
                   type='number'
-                  name='adults'
-                  value={values.adults}
+                  name='participants'
+                  value={values.participants}
                   onChange={handleChange}
-                  isValid={touched.adults && !errors.adults}
+                  isValid={touched.participants && !errors.participants}
                 />
-                <ErrorMessage name='adults'>
-                  {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-                </ErrorMessage>
-              </Form.Group>
-
-              <Form.Group as={Col}>
-                <Form.Label>Children</Form.Label>
-                <Form.Control
-                  type='number'
-                  name='children'
-                  value={values.children}
-                  onChange={handleChange}
-                  isValid={touched.children && !errors.children}
-                />
-                <ErrorMessage name='children'>
+                <ErrorMessage name='participants'>
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
@@ -282,7 +320,12 @@ const AccommodationBookingForm = ({ formState }) => {
                 as={Col}
                 className='m-3'
               >
-                <Button disabled={isSubmitting} variant='primary' type='submit'>
+                <Button
+                  disabled={isSubmitting}
+                  variant='primary'
+                  type='submit'
+                  onClick={() => postData(values)}
+                >
                   {isSubmitting && (
                     <span className='spinner-border spinner-border-sm mr-1'></span>
                   )}
@@ -297,4 +340,4 @@ const AccommodationBookingForm = ({ formState }) => {
   );
 };
 
-export default AccommodationBookingForm;
+export default BanquetingBookingForm;

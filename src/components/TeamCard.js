@@ -58,9 +58,7 @@ const TeamCard = ({ image, name, title }) => {
             </div>
           </div>
           <div className='team__content'>
-            <h3>
-              <Link to='/teamDetails'>{name}</Link>
-            </h3>
+            <h3>{name}</h3>
             <span>{title}</span>
           </div>
         </div>

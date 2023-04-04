@@ -3,6 +3,8 @@ import "./Pages.css";
 import AppHeader from "../components/shared/AppHeader";
 import Button from "react-bootstrap/Button";
 import Footer from "../components/shared/Footer";
+import PageHeader from "../components/shared/PageHeader";
+import PageHelmet from "../components/shared/PageHelmet";
 import useGlobalContext from "../hooks/useGlobalContext";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -18,9 +20,11 @@ function ConferencingPage() {
   const { handleShowBookingModal } = useGlobalContext();
   return (
     <>
+      <PageHelmet pageTitle='Conferencing' />
       <AppHeader />
+      <PageHeader title='Conferencing' subtitle={conferenceRoom.name} />
       <div>
-        <section className='section-content padding-y bg mt-160'>
+        <section className='section-content padding-y bg'>
           <div className='container'>
             <article className='card'>
               <div className='card-body'>
@@ -35,25 +39,6 @@ function ConferencingPage() {
                   <main className='col-md-4'>
                     <article>
                       <h3 className='title'>The {conferenceRoom.name}</h3>
-                      <div>
-                        <ul className='rating-stars'>
-                          <li className='stars-active'>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>
-                          </li>
-                          <li>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>
-                          </li>
-                        </ul>
-                        <span className='label-rating mr-3 text-muted'>
-                          7/10
-                        </span>
-                      </div>
 
                       <hr />
 
@@ -94,7 +79,7 @@ function ConferencingPage() {
                               src={photo}
                               alt=''
                               className='item-thumb'
-                              onClick={(photo) => setCurrentPhoto(photo)}
+                              onClick={() => setCurrentPhoto(photo)}
                             />
                           ))}
                         </div>
@@ -105,32 +90,12 @@ function ConferencingPage() {
               </div>
             </article>
 
-            <article className='card mt-5'>
+            {/* <article className='card mt-5'>
               <div className='card-body'>
-                <div className='row'>
-                  {/* <aside className='col-md-6'>
-                    <h5>Amenities</h5>
-                    <dl className='row'>
-                      <dt className='col-sm-3'>Amenity Name</dt>
-                      <dd className='col-sm-9'>Amenity Icon</dd>
-                    </dl>
-                  </aside> */}
-                  {/* <div>
-                    <h5>Amenities</h5>
-                    <ul className='list-check'>
-                      {conferenceRoom.amenities.map((amenity) => (
-                        <>
-                          <li>{amenity.name}</li>
-                          <dt className='col-sm-3'>{amenity.name}</dt>
-                          <dd className='col-sm-9'>{amenity.icon}</dd>
-                        </>
-                      ))}
-                    </ul>
-                  </div> */}
-                </div>
+                <div className='row'></div>
                 <hr />
               </div>
-            </article>
+            </article> */}
           </div>
         </section>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import TeamCard from "../../../components/TeamCard";
+import TeamCard from "./TeamCard";
 
 const TeamArea = () => {
   return (
@@ -14,17 +14,6 @@ const TeamArea = () => {
             </div>
           </div>
           <div className='row'>
-            <TeamCard image='person' name='Muhammed Ahmed' title='CEO' />
-            <TeamCard
-              image='person'
-              name='Suhail Ahmed'
-              title='Operations Director'
-            />
-            <TeamCard
-              image='person'
-              name='Innocent Mushava'
-              title='Finance Director'
-            />
             <TeamCard
               image='person'
               name='Chite Kumwenda'
@@ -35,6 +24,12 @@ const TeamArea = () => {
               name='Clement Kapanda'
               title='Food & Beverage Manager'
             />
+            <TeamCard
+              image='person'
+              name='Innocent Mushava'
+              title='Finance Director'
+            />
+
             <TeamCard
               image='person'
               name='Yohanne Banda'

@@ -24,6 +24,7 @@ const AppHeader = () => {
   const { rooms } = useGlobalContext();
   const { conferenceRooms } = useGlobalContext();
   const { banquetRooms } = useGlobalContext();
+  const { meals } = useGlobalContext();
   const location = useLocation();
   return (
     <>
@@ -76,7 +77,7 @@ const AppHeader = () => {
 
                           <li>
                             <Button className='mb-5' variant='light'>
-                              Acommodation
+                              Accommodation
                             </Button>
                             <ul className='submenu'>
                               {rooms.map((room) => (
@@ -123,8 +124,8 @@ const AppHeader = () => {
                               {banquetRooms.map((banquetRoom) => (
                                 <li key={banquetRoom.id.toString()}>
                                   <NavLink
-                                    to='/accommodation'
-                                    state={{ room: banquetRoom.name }}
+                                    to='/banqueting'
+                                    state={{ banquetRoom: banquetRoom }}
                                   >
                                     {banquetRoom.name}
                                   </NavLink>
@@ -135,23 +136,38 @@ const AppHeader = () => {
 
                           <li>
                             <Button className='mb-5' variant='light'>
-                              Restaurant
+                              Catering
                             </Button>
-                          </li>
-
-                          {/* <li>
-                            <NavLink to='/about'>About Us</NavLink>
 
                             <ul className='submenu'>
                               <li>
+                                <NavLink
+                                  to='/restaurant'
+                                  state={{ meals: meals }}
+                                >
+                                  Aamari Restaurant
+                                </NavLink>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <Button className='mb-5' variant='light'>
+                              About Us
+                            </Button>
+
+                            <ul className='submenu'>
+                              <li>
+                                <NavLink to='/about'>About Us</NavLink>
+                              </li>
+                              <li>
                                 <NavLink to='/contact'>Contact Us</NavLink>
                               </li>
-
                               <li>
                                 <NavLink to='/team'>Management</NavLink>
                               </li>
                             </ul>
-                          </li> */}
+                          </li>
                         </ul>
                       </nav>
                     </div>

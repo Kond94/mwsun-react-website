@@ -1,12 +1,15 @@
 import Button from "react-bootstrap/Button";
 import { FiPlay } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import React from "react";
 import Slider from "react-slick";
 import VideoPopup from "../../components/VideoPopup";
 import useGlobalContext from "../../hooks/useGlobalContext";
 
-const LandingSlider = ({ handleCloseBookingModal, handleShowBookingModal }) => {
+const LandingSlider = () => {
+  const { setForm } = useGlobalContext();
+  const { setFormState } = useGlobalContext();
+  const { handleShowBookingModal } = useGlobalContext();
+
   const { setIsVideoOpen } = useGlobalContext();
   // slider data
   const homeSliderData = [
@@ -75,7 +78,11 @@ const LandingSlider = ({ handleCloseBookingModal, handleShowBookingModal }) => {
                         <div className='slider__btn'>
                           <Button
                             variant='light'
-                            onClick={handleShowBookingModal}
+                            onClick={() => {
+                              setForm("0");
+                              setFormState(null);
+                              handleShowBookingModal();
+                            }}
                           >
                             Book Now
                           </Button>

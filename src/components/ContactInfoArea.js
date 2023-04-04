@@ -1,4 +1,4 @@
-import ContactInfo from "../../../components/ContactInfo";
+import ContactInfo from "./ContactInfo";
 import React from "react";
 
 const ContactInfoArea = () => {

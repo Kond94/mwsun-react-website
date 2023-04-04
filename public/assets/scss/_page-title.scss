@@ -4,7 +4,7 @@
 
 .page {
   &__title {
-    min-height: 500px;
+    min-height: 350px;
     @include background();
     &::before {
       position: absolute;

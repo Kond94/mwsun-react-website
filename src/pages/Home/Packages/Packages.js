@@ -13,8 +13,8 @@ const Packages = ({ packages }) => {
           <div className='row'>
             <div className='col-xl-8 offset-xl-2 col-lg-10 offset-lg-1'>
               <div className='section__title section__title-3 mb-85 text-center'>
-                <span>We love Vacationers</span>
-                <h2>Here are some awesone vacation Packages</h2>
+                <h3>We love Vacationers</h3>
+                <h2>Here are some awesome vacation Packages</h2>
               </div>
               <div className='price__tab d-flex justify-content-center mb-50'>
                 <div className='price__offer'>

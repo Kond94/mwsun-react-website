@@ -1,4 +1,4 @@
-import BrandItem from "../../components/BrandItem";
+import BrandItem from "./BrandItem";
 import Slider from "react-slick";
 
 const BrandsCard = () => {
