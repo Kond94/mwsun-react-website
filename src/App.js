@@ -28,6 +28,7 @@ function App() {
             <Route path='/contact' element={<ContactPage />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/team' element={<TeamPage />} />
+            <Route path='*' element={<Home />} />
           </Routes>
           <ToastContainer />
         </BrowserRouter>
