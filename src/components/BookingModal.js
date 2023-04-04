@@ -22,78 +22,80 @@ const BookingModal = ({ showBookingModal, onHideBookingModal }) => {
     // { name: "Package", value: "4" },
   ];
   return (
-    <Modal show={showBookingModal} onHide={() => onHideBookingModal()}>
-      <Modal.Header closeButton>
-        <Modal.Title>
-          {form == "0" ? "Online" : bookingForms[form - 1].name}
-          {" Booking"}
-        </Modal.Title>
-      </Modal.Header>
+    <div>
+      <Modal show={showBookingModal} onHide={() => onHideBookingModal()}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {form == "0" ? "Online" : bookingForms[form - 1].name}
+            {" Booking"}
+          </Modal.Title>
+        </Modal.Header>
 
-      <Modal.Body>
-        <Container fluid>
-          {form === "0" ? (
-            <>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                What are you reserving?
-              </p>
-              <ButtonGroup
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {bookingForms.map((radio, idx) => (
-                  <ToggleButton
-                    key={idx}
-                    id={`radio-${idx}`}
-                    type='radio'
-                    variant={"outline-primary"}
-                    name='radio'
-                    value={form}
-                    checked={form === radio.value}
-                    onChange={(e) => {
-                      setForm(radio.value);
-                    }}
-                  >
-                    {radio.name}
-                  </ToggleButton>
-                ))}
-              </ButtonGroup>{" "}
-            </>
+        <Modal.Body>
+          <Container fluid>
+            {form === "0" ? (
+              <>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  What are you reserving?
+                </p>
+                <ButtonGroup
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {bookingForms.map((radio, idx) => (
+                    <ToggleButton
+                      key={idx}
+                      id={`radio-${idx}`}
+                      type='radio'
+                      variant={"outline-primary"}
+                      name='radio'
+                      value={form}
+                      checked={form === radio.value}
+                      onChange={(e) => {
+                        setForm(radio.value);
+                      }}
+                    >
+                      {radio.name}
+                    </ToggleButton>
+                  ))}
+                </ButtonGroup>{" "}
+              </>
+            ) : (
+              <></>
+            )}
+          </Container>
+          <br />
+
+          {form === "1" ? (
+            <AccommodationBookingForm
+              onHide={onHideBookingModal}
+              formState={formState}
+            />
+          ) : form === "2" ? (
+            <ConferencingBookingForm
+              onHide={onHideBookingModal}
+              formState={formState}
+            />
+          ) : form === "3" ? (
+            <BanquetingBookingForm
+              onHide={onHideBookingModal}
+              formState={formState}
+            />
           ) : (
             <></>
           )}
-        </Container>
-        <br />
-
-        {form === "1" ? (
-          <AccommodationBookingForm
-            onHide={onHideBookingModal}
-            formState={formState}
-          />
-        ) : form === "2" ? (
-          <ConferencingBookingForm
-            onHide={onHideBookingModal}
-            formState={formState}
-          />
-        ) : form === "3" ? (
-          <BanquetingBookingForm
-            onHide={onHideBookingModal}
-            formState={formState}
-          />
-        ) : (
-          <></>
-        )}
-      </Modal.Body>
-    </Modal>
+        </Modal.Body>
+      </Modal>
+    </div>
   );
 };
 

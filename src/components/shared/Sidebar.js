@@ -5,8 +5,14 @@ import Collapsible from "react-collapsible";
 import { NavLink } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 import React from "react";
+import useGlobalContext from "../../hooks/useGlobalContext";
 
 const Sidebar = ({ show, handleClose }) => {
+  const { rooms } = useGlobalContext();
+  const { conferenceRooms } = useGlobalContext();
+  const { banquetRooms } = useGlobalContext();
+  const { meals } = useGlobalContext();
+
   return (
     <>
       <div>
@@ -75,8 +81,79 @@ const Sidebar = ({ show, handleClose }) => {
                         </div>
                         <Collapsible
                           trigger={
-                            <NavLink to='/accommodation'>Accommodation</NavLink>
+                            <p style={{ color: "#fff" }}>Accommodation</p>
                           }
+                          triggerTagName='div'
+                          triggerOpenedClassName='icon_close'
+                          triggerClassName='iconAdd'
+                          open={false}
+                        >
+                          <ul className='sidebar_sub_menu text-white'>
+                            {rooms.map((room) => (
+                              <li key={room.id.toString()} className='pt-10'>
+                                <NavLink
+                                  to='/accommodation'
+                                  state={{ room: room }}
+                                >
+                                  {room.name}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </Collapsible>
+
+                        <Collapsible
+                          trigger={
+                            <p style={{ color: "#fff" }}>Conferencing</p>
+                          }
+                          triggerTagName='div'
+                          triggerOpenedClassName='icon_close'
+                          triggerClassName='iconAdd'
+                          open={false}
+                        >
+                          <ul className='sidebar_sub_menu text-white'>
+                            {conferenceRooms.map((conferenceRoom) => (
+                              <li
+                                key={conferenceRoom.id.toString()}
+                                className='pt-10'
+                              >
+                                <NavLink
+                                  to='/conferencing'
+                                  state={{ conferenceRoom: conferenceRoom }}
+                                >
+                                  {conferenceRoom.name}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </Collapsible>
+
+                        <Collapsible
+                          trigger={<p style={{ color: "#fff" }}>Banqueting</p>}
+                          triggerTagName='div'
+                          triggerOpenedClassName='icon_close'
+                          triggerClassName='iconAdd'
+                          open={false}
+                        >
+                          <ul className='sidebar_sub_menu text-white'>
+                            {banquetRooms.map((banquetRoom) => (
+                              <li
+                                key={banquetRoom.id.toString()}
+                                className='pt-10'
+                              >
+                                <NavLink
+                                  to='/banqueting'
+                                  state={{ banquetRoom: banquetRoom }}
+                                >
+                                  {banquetRoom.name}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </Collapsible>
+
+                        <Collapsible
+                          trigger={<p style={{ color: "#fff" }}>Catering</p>}
                           triggerTagName='div'
                           triggerOpenedClassName='icon_close'
                           triggerClassName='iconAdd'
@@ -85,77 +162,31 @@ const Sidebar = ({ show, handleClose }) => {
                           <ul className='sidebar_sub_menu text-white'>
                             <li className='pt-10'>
                               <NavLink
-                                to='/accommodation'
-                                state={{ category: "Single Rooms" }}
+                                to='/restaurant'
+                                state={{ meals: meals }}
                               >
-                                Single Rooms
-                              </NavLink>
-                            </li>
-                            <li className='pt-10'>
-                              <NavLink
-                                to='/accommodation'
-                                state={{ category: "Double Rooms" }}
-                              >
-                                Double Rooms
-                              </NavLink>
-                            </li>
-                            <li className='pt-10'>
-                              <NavLink
-                                to='/accommodation'
-                                state={{ category: "Family Units" }}
-                              >
-                                Family Units
-                              </NavLink>
-                            </li>
-                            <li className='pt-10'>
-                              <NavLink
-                                to='/accommodation'
-                                state={{ category: "Suites" }}
-                              >
-                                Suites
-                              </NavLink>
-                            </li>
-                          </ul>
-                        </Collapsible>
-
-                        <div className='about iconAdd'>
-                          <NavLink to='/conferencing'>Conferencing </NavLink>
-                        </div>
-
-                        <Collapsible
-                          trigger={<NavLink to='/restaurant'>Catering</NavLink>}
-                          triggerTagName='div'
-                          triggerOpenedClassName='icon_close'
-                          triggerClassName='iconAdd'
-                          open={false}
-                        >
-                          <ul className='sidebar_sub_menu submenu text-white'>
-                            <li>
-                              <NavLink to='/restaurant'>
                                 Aamari Restaurant
                               </NavLink>
                             </li>
-                            <li>
-                              <NavLink to='/external-catering'>
-                                External Catering
-                              </NavLink>
-                            </li>
                           </ul>
                         </Collapsible>
 
                         <Collapsible
-                          trigger={<NavLink to='/about'>About Us</NavLink>}
+                          trigger={<p style={{ color: "#fff" }}>About Us</p>}
                           triggerTagName='div'
                           triggerOpenedClassName='icon_close'
                           triggerClassName='iconAdd'
                           open={false}
                         >
-                          <ul className='sidebar_sub_menu submenu text-white text-capitalize'>
-                            <li>
-                              <NavLink to='/team'>Management</NavLink>
+                          <ul className='sidebar_sub_menu text-white'>
+                            <li className='pt-10'>
+                              <NavLink to='/about'>About Us</NavLink>
                             </li>
-                            <li>
+                            <li className='pt-10'>
                               <NavLink to='/contact'>Contact Us</NavLink>
+                            </li>
+                            <li className='pt-10'>
+                              <NavLink to='/team'>Management</NavLink>
                             </li>
                           </ul>
                         </Collapsible>
@@ -173,9 +204,9 @@ const Sidebar = ({ show, handleClose }) => {
                           Welcome to Malawi Sun Hotel and Conference Centre. We
                           strive to treat our guests with impecable service.
                         </p>
-                        <a href='contact.html' className='z-btn z-btn-white'>
-                          contact us
-                        </a>
+                        <NavLink className='z-btn z-btn-white' to='/contact'>
+                          Contact Us
+                        </NavLink>
 
                         <div className='sidebar__contact mt-30'>
                           <ul>
