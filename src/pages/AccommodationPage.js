@@ -63,7 +63,7 @@ function AccommodationPage() {
                       <div className='mb-3'>
                         <h6>Short description</h6>
                         <ul className='list-dots mb-0'>
-                          <li>Capacity: {room.description}</li>
+                          <li> {room.description}</li>
                         </ul>
                       </div>
 
