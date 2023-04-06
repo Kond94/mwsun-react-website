@@ -80,10 +80,11 @@ const BanquetingBookingForm = ({ formState }) => {
   };
 
   const postData = async (data) => {
+    console.log(data);
     setIsSubmitting(true);
     await axios
       .post(
-        process.env.REACT_APP_API_URL + "/api/conference-bookings",
+        process.env.REACT_APP_API_URL + "/api/banquet-bookings",
         {
           data: {
             ...data,
@@ -121,7 +122,6 @@ const BanquetingBookingForm = ({ formState }) => {
           email: "",
           phone: "",
           date: new Date(),
-          time: "",
           participants: 1,
           banquet_room: formState === null ? "1" : formState.banquetRoom,
           banquet_addons: [],
@@ -266,10 +266,10 @@ const BanquetingBookingForm = ({ formState }) => {
                   name='time'
                   onChange={handleChange}
                 >
-                  <option key={1} value={"Morning"}>
+                  <option key={1} value={"Afternoon"}>
                     Afternoon{" "}
                   </option>
-                  <option key={2} value={"Afternoon"}>
+                  <option key={2} value={"Evening"}>
                     Evening{" "}
                   </option>
                 </Form.Select>
