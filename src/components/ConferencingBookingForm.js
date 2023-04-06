@@ -83,12 +83,13 @@ const ConferencingBookingForm = ({ formState }) => {
     setIsSubmitting(true);
     await axios
       .post(
-        process.env.REACT_APP_API_URL + "/api/conference-bookings",
+        process.env.REACT_APP_API_URL + "/api/conference-bookings?populate=deep",
         {
           data: {
             ...data,
             commencementDate: data.commencementDate.toISOString().split("T")[0],
-            conference_room: data.conference_room,
+            conference_room: +data.conference_room,
+            conference_addons: data.conference_addons.map((add0n) => +add0n),
           },
         },
 

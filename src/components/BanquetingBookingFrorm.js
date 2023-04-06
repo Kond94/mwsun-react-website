@@ -84,12 +84,13 @@ const BanquetingBookingForm = ({ formState }) => {
     setIsSubmitting(true);
     await axios
       .post(
-        process.env.REACT_APP_API_URL + "/api/banquet-bookings",
+        process.env.REACT_APP_API_URL + "/api/banquet-bookings?populate=deep",
         {
           data: {
             ...data,
             date: data.date.toISOString().split("T")[0],
-            banquet_room: data.banquet_room,
+            banquet_room: +data.banquet_room,
+            banquet_addons: data.banquet_addons.map((add0n) => +add0n),
           },
         },
 
