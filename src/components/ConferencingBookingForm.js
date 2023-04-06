@@ -100,7 +100,6 @@ const ConferencingBookingForm = ({ formState }) => {
         }
       )
       .then((response) => {
-        console.log(response);
         handleCloseBookingModal();
         notify();
       })

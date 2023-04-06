@@ -89,7 +89,6 @@ const AccommodationBookingForm = ({ formState }) => {
         }
       )
       .then((response) => {
-        console.log(response);
         handleCloseBookingModal();
         notify();
       })

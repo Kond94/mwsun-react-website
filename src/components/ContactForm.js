@@ -50,7 +50,6 @@ const ContactForm = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         notify();
       })
       .catch((error) => {

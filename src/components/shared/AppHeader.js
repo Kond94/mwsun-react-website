@@ -203,17 +203,7 @@ const AppHeader = () => {
           <div className='header__search-wrapper'>
             <div className='container'>
               <div className='row'>
-                <div className='col-xl-12'>
-                  <form action='#'>
-                    <input type='text' placeholder='Your Keywords' />
-                    <button type='button'>
-                      <i>
-                        {" "}
-                        <FaSearch />{" "}
-                      </i>
-                    </button>
-                  </form>
-                </div>
+                <div className='col-xl-12'></div>
               </div>
             </div>
           </div>

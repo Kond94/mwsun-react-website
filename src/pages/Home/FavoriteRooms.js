@@ -2,7 +2,6 @@ import React from "react";
 import RoomCard from "../../components/RoomCard";
 
 const FavoriteRooms = ({ promotionRooms }) => {
-  console.log(promotionRooms);
   return (
     <>
       <section className='services__area pt-115 pb-80'>

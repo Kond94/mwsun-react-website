@@ -12,7 +12,9 @@ const Sidebar = ({ show, handleClose }) => {
   const { conferenceRooms } = useGlobalContext();
   const { banquetRooms } = useGlobalContext();
   const { meals } = useGlobalContext();
-
+  const { setForm } = useGlobalContext();
+  const { setFormState } = useGlobalContext();
+  const { handleShowBookingModal } = useGlobalContext();
   return (
     <>
       <div>
@@ -208,6 +210,19 @@ const Sidebar = ({ show, handleClose }) => {
                             </li>
                           </ul>
                         </Collapsible>
+                        <div style={{ margin: 30 }}>
+                          <p
+                            className='z-btn z-btn-white '
+                            onClick={() => {
+                              setForm("0");
+                              setFormState(null);
+                              handleShowBookingModal();
+                              handleClose();
+                            }}
+                          >
+                            Book Now
+                          </p>
+                        </div>
                       </div>
                     </div>
 
