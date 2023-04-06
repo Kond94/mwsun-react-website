@@ -87,7 +87,7 @@ const BanquetingBookingForm = ({ formState }) => {
         {
           data: {
             ...data,
-            date: data.commencementDate.toISOString().split("T")[0],
+            date: data.date.toISOString().split("T")[0],
             banquet_room: data.banquet_room,
           },
         },

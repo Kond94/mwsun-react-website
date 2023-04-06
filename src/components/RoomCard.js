@@ -16,7 +16,9 @@ const RoomCard = ({ room }) => {
                   {room.name}
                 </Link>
               </h3>
-              <span className='mr-20'>{room.description}</span>
+              <span style={{ color: "white" }} className='mr-20'>
+                {room.description}
+              </span>
             </div>
           </div>
           <div className='room__content pt-10 pb-30'>
