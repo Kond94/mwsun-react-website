@@ -77,7 +77,9 @@ const Sidebar = ({ show, handleClose }) => {
                     >
                       <div className='side_navBar'>
                         <div className='about iconAdd'>
-                          <NavLink to='/'>Home </NavLink>
+                          <NavLink to='/' onClick={() => handleClose()}>
+                            Home{" "}
+                          </NavLink>
                         </div>
                         <Collapsible
                           trigger={
@@ -92,6 +94,7 @@ const Sidebar = ({ show, handleClose }) => {
                             {rooms.map((room) => (
                               <li key={room.id.toString()} className='pt-10'>
                                 <NavLink
+                                  onClick={() => handleClose()}
                                   to='/accommodation'
                                   state={{ room: room }}
                                 >
@@ -118,6 +121,7 @@ const Sidebar = ({ show, handleClose }) => {
                                 className='pt-10'
                               >
                                 <NavLink
+                                  onClick={() => handleClose()}
                                   to='/conferencing'
                                   state={{ conferenceRoom: conferenceRoom }}
                                 >
@@ -142,6 +146,7 @@ const Sidebar = ({ show, handleClose }) => {
                                 className='pt-10'
                               >
                                 <NavLink
+                                  onClick={() => handleClose()}
                                   to='/banqueting'
                                   state={{ banquetRoom: banquetRoom }}
                                 >
@@ -162,6 +167,7 @@ const Sidebar = ({ show, handleClose }) => {
                           <ul className='sidebar_sub_menu text-white'>
                             <li className='pt-10'>
                               <NavLink
+                                onClick={() => handleClose()}
                                 to='/restaurant'
                                 state={{ meals: meals }}
                               >
@@ -180,13 +186,25 @@ const Sidebar = ({ show, handleClose }) => {
                         >
                           <ul className='sidebar_sub_menu text-white'>
                             <li className='pt-10'>
-                              <NavLink to='/about'>About Us</NavLink>
+                              <NavLink
+                                to='/about'
+                                onClick={() => handleClose()}
+                              >
+                                About Us
+                              </NavLink>
                             </li>
                             <li className='pt-10'>
-                              <NavLink to='/contact'>Contact Us</NavLink>
+                              <NavLink
+                                to='/contact'
+                                onClick={() => handleClose()}
+                              >
+                                Contact Us
+                              </NavLink>
                             </li>
                             <li className='pt-10'>
-                              <NavLink to='/team'>Management</NavLink>
+                              <NavLink to='/team' onClick={() => handleClose()}>
+                                Management
+                              </NavLink>
                             </li>
                           </ul>
                         </Collapsible>
@@ -204,10 +222,14 @@ const Sidebar = ({ show, handleClose }) => {
                           Welcome to Malawi Sun Hotel and Conference Centre. We
                           strive to treat our guests with impecable service.
                         </p>
-                        <NavLink className='z-btn z-btn-white' to='/contact'>
+
+                        <NavLink
+                          className='z-btn z-btn-white'
+                          onClick={() => handleClose()}
+                          to='/contact'
+                        >
                           Contact Us
                         </NavLink>
-
                         <div className='sidebar__contact mt-30'>
                           <ul>
                             <li>

@@ -2,6 +2,7 @@ import React from "react";
 import RoomCard from "../../components/RoomCard";
 
 const FavoriteRooms = ({ promotionRooms }) => {
+  console.log(promotionRooms);
   return (
     <>
       <section className='services__area pt-115 pb-80'>
@@ -21,9 +22,7 @@ const FavoriteRooms = ({ promotionRooms }) => {
             {promotionRooms.map((promotionRoom) => (
               <RoomCard
                 key={promotionRoom.id.toString()}
-                image={promotionRoom.room.displayPhoto}
-                name={promotionRoom.room.title}
-                title={promotionRoom.room.description}
+                room={promotionRoom.room}
               />
             ))}
           </div>

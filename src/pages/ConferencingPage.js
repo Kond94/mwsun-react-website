@@ -45,7 +45,8 @@ function ConferencingPage() {
                       <div className='mb-3'>
                         <h6>Short description</h6>
                         <ul className='list-dots mb-0'>
-                          <li>{conferenceRoom.capacity}</li>
+                          <li>Capacity: {conferenceRoom.capacity}</li>
+                          <li>{conferenceRoom.description}</li>
                         </ul>
                       </div>
 

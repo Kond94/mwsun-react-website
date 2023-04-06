@@ -44,7 +44,8 @@ function BanquetingPage() {
                       <div className='mb-3'>
                         <h6>Short description</h6>
                         <ul className='list-dots mb-0'>
-                          <li>{banquetRoom.capacity}</li>
+                          <li>Capacity: {banquetRoom.capacity}</li>
+                          <li>{banquetRoom.description}</li>
                         </ul>
                       </div>
 

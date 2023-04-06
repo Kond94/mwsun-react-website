@@ -22,18 +22,7 @@ const ServiceCard = ({ icon, title, background, link }) => {
               <i> {icon} </i>
             </div>
             <h3> {title} </h3>
-            <div className='features__btn'>
-              <Link to={"/" + link} className='link-btn'>
-                <i>
-                  {" "}
-                  <CgArrowLongRight />{" "}
-                </i>
-                <i>
-                  {" "}
-                  <CgArrowLongRight />{" "}
-                </i>
-              </Link>
-            </div>
+            <div className='features__btn'></div>
           </div>
         </div>
       </div>

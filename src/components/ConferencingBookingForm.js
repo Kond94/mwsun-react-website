@@ -66,7 +66,7 @@ const ConferencingBookingForm = ({ formState }) => {
   const notify = () =>
     toast.success(
       "You have successfully made your reservation. Please wait for a response from our team.",
-      { autoClose: false }
+      { autoClose: 6000 }
     );
 
   const handleAddons = (arr, newId, setFieldValue) => {

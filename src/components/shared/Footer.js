@@ -130,7 +130,7 @@ const Footer = () => {
                   <div className='footer__social theme-social f-right'>
                     <ul>
                       <li>
-                        <a href='w'>
+                        <a href='https://www.facebook.com/malawi.sun/'>
                           <i>
                             <FaFacebookF />
                           </i>
@@ -140,7 +140,7 @@ const Footer = () => {
                         </a>
                       </li>
                       <li>
-                        <a href='https://www.facebook.com/malawi.sun/'>
+                        <a href='https://twitter.com/MalawiSun'>
                           <i>
                             <FaTwitter />{" "}
                           </i>

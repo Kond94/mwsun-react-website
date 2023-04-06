@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const AboutCard = () => {
   return (
     <>
-      <section className='about__area pb-200 pt-100'>
+      <section className='about__area pb-50 pt-100'>
         <div className='container'>
           <div className='row'>
             <div className='col-xl-6 pr-0 col-lg-6'>
@@ -20,12 +20,15 @@ const AboutCard = () => {
               <div className='about__content'>
                 <div className='section__title mb-25'>
                   <span>Who we are</span>
-                  <h2>We Unlock Potential</h2>
+                  <h2>The epitome of Hospitality </h2>
                 </div>
                 <p>
-                  Why I say old chap that is spiffing do one, cup of char bite
-                  your arm off lavatory bugger all mate bog-standard bits and
-                  bobs I'm telling barmy blow.
+                  “Hospitality means primarily the creation of free space where
+                  the stranger can enter and become a friend instead of an
+                  enemy. Hospitality is not to change people, but to offer them
+                  space where change can take place. It is not to bring men and
+                  women over to our side, but to offer freedom not disturbed by
+                  dividing lines.” - Henri J.M. Nouwen
                 </p>
                 <div className='about__list'>
                   <ul>
@@ -35,7 +38,7 @@ const AboutCard = () => {
                           {" "}
                           <FaCheck />{" "}
                         </i>
-                        Innovative ideas
+                        Professional Staff
                       </span>
                     </li>
                     <li>
@@ -44,7 +47,7 @@ const AboutCard = () => {
                           {" "}
                           <FaCheck />{" "}
                         </i>
-                        Professional assistance
+                        Global Standard Amenities
                       </span>
                     </li>
                     <li>
@@ -53,18 +56,11 @@ const AboutCard = () => {
                           {" "}
                           <FaCheck />{" "}
                         </i>
-                        Financial advisory
+                        Great Pricing
                       </span>
                     </li>
                   </ul>
                 </div>
-                <Link to='/accommodation' className='z-btn '>
-                  What we do
-                  <i>
-                    {" "}
-                    <CgArrowLongRight />{" "}
-                  </i>
-                </Link>
               </div>
             </div>
           </div>

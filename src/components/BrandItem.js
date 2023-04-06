@@ -1,14 +1,11 @@
 import React from "react";
 
-const BrandItem = ({ img_1, img_2 }) => {
+const BrandItem = ({ img }) => {
   return (
     <>
       <div className='brand__item-wrapper'>
         <div className='brand__item'>
-          <img src={`assets/img/brand/brand-${img_1}.png`} alt='' />
-        </div>
-        <div className='brand__item'>
-          <img src={`assets/img/brand/brand-${img_2}.png`} alt='' />
+          <img style={{ width: 100, height: 100 }} src={img} alt='' />
         </div>
       </div>
     </>

@@ -27,7 +27,7 @@ const ContactForm = () => {
   const notify = () =>
     toast.success(
       "You have successfully sent your message. Please wait for a response from our team.",
-      { autoClose: false }
+      { autoClose: 6000 }
     );
 
   const postData = async (data) => {

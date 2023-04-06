@@ -37,9 +37,9 @@ const PackageCard = ({
                 ))}
               </ul>
             </div>
-            <Button variant='light' onClick={handleShowBookingModal}>
+            {/* <Button variant='light' onClick={handleShowBookingModal}>
               Book
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

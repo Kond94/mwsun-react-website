@@ -13,7 +13,7 @@ const Contact = () => {
 
       <AppHeader />
       <PageHeader title='Contact Us' subtitle='Contact' />
-      <ContactInfoArea />
+      {/* <ContactInfoArea /> */}
       <ContactCard />
       <Footer />
     </>

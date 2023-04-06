@@ -61,13 +61,28 @@ const AllContext = ({ children }) => {
             discount: promotionRoom.attributes.discount,
             room: {
               id: promotionRoom.attributes.room.data.id,
-              title: promotionRoom.attributes.room.data.attributes.title,
+              name: promotionRoom.attributes.room.data.attributes.title,
               description:
                 promotionRoom.attributes.room.data.attributes.description,
               price: promotionRoom.attributes.room.data.attributes.price,
               displayPhoto:
                 promotionRoom.attributes.room.data.attributes.displayPhoto?.data
                   ?.attributes?.url,
+              photos:
+                promotionRoom.attributes.room.data.attributes.photos?.data?.map(
+                  (photo) => photo.attributes.url
+                ),
+              amenities:
+                promotionRoom.attributes.room.data.attributes.amenities.data.map(
+                  (amenity) => {
+                    return {
+                      id: amenity.id,
+                      name: amenity.attributes.name,
+                      icon: amenity.attributes.icon,
+                      extraCharge: amenity.attributes.extraCharge,
+                    };
+                  }
+                ),
             },
           };
         });
@@ -91,6 +106,7 @@ const AllContext = ({ children }) => {
             id: banquetRoom.id,
             name: banquetRoom.attributes.name,
             capacity: banquetRoom.attributes.capacity,
+            description: banquetRoom.attributes.description,
             price: banquetRoom.attributes.price,
             displayPhoto:
               banquetRoom.attributes.displayPhoto?.data?.attributes?.url,
@@ -143,6 +159,7 @@ const AllContext = ({ children }) => {
             id: conferenceRoom.id,
             name: conferenceRoom.attributes.name,
             capacity: conferenceRoom.attributes.capacity,
+            description: conferenceRoom.attributes.description,
             price: conferenceRoom.attributes.price,
             displayPhoto:
               conferenceRoom.attributes.displayPhoto?.data?.attributes?.url,

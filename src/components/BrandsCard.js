@@ -37,7 +37,7 @@ const BrandsCard = () => {
   };
   return (
     <>
-      <section className='brand__area p-relative pt-160 pb-50'>
+      <section className='brand__area p-relative pb-50'>
         <div className='brand__shape'>
           <img
             className='square'
@@ -72,26 +72,22 @@ const BrandsCard = () => {
                 className='section__title section__title-3 wow fadeInUp'
                 data-wow-delay='.2s'
               >
-                <h2>More than 7,962 designers use konsul.</h2>
+                <h2>The largest organizations trust us.</h2>
               </div>
               <div
                 className='brand__subtitle mb-90 wow fadeInUp'
                 data-wow-delay='.4s'
               >
-                <p>
-                  Design anything from simple icons to fully featured websites
-                  and applications.
-                </p>
+                <p>Some of our major clients</p>
               </div>
             </div>
           </div>
           <div className='row'>
             <Slider className='brand-active' {...settings}>
-              <BrandItem img_1='1' img_2='5' />
-              <BrandItem img_1='2' img_2='6' />
-              <BrandItem img_1='3' img_2='7' />
-              <BrandItem img_1='4' img_2='8' />
-              <BrandItem img_1='2' img_2='6' />
+              <BrandItem img='assets/images/logos/escom.jpeg' />
+              <BrandItem img='assets/images/logos/gov.jpeg' />
+              <BrandItem img='assets/images/logos/who.png' />
+              <BrandItem img='assets/images/logos/stdbnk.jpeg' />
             </Slider>
           </div>
         </div>
