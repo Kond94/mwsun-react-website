@@ -38,8 +38,8 @@ function AccommodationPage() {
                   <aside className='col-md-8' style={{ height: 500 }}>
                     <Swiper
                       style={{
-                        "--swiper-navigation-color": "#fff",
-                        "--swiper-pagination-color": "#fff",
+                        "--swiper-navigation-color": "#ffca2c",
+                        "--swiper-pagination-color": "#ffca2c",
                       }}
                       spaceBetween={10}
                       navigation={true}
@@ -72,9 +72,7 @@ function AccommodationPage() {
                   <main className='col-md-4'>
                     <article>
                       <h3 className='title'>The {room.name}</h3>
-                      <div>
-                       
-                      </div>
+                      <div></div>
 
                       <hr />
 

@@ -72,7 +72,7 @@ const BrandsCard = () => {
                 className='section__title section__title-3 wow fadeInUp'
                 data-wow-delay='.2s'
               >
-                <h2>The largest organizations trust us.</h2>
+                <h2>Organizations who trust us...</h2>
               </div>
               <div
                 className='brand__subtitle mb-90 wow fadeInUp'
@@ -86,7 +86,7 @@ const BrandsCard = () => {
             <Slider className='brand-active' {...settings}>
               <BrandItem img='assets/images/logos/escom.jpeg' />
               <BrandItem img='assets/images/logos/gov.jpeg' />
-              <BrandItem img='assets/images/logos/who.png' />
+              <BrandItem img='assets/images/logos/who.jpeg' />
               <BrandItem img='assets/images/logos/stdbnk.jpeg' />
             </Slider>
           </div>
