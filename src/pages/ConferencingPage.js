@@ -1,4 +1,11 @@
 import "./Pages.css";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import AppHeader from "../components/shared/AppHeader";
 import Button from "react-bootstrap/Button";
@@ -12,12 +19,13 @@ import { useState } from "react";
 function ConferencingPage() {
   const location = useLocation();
   const conferenceRoom = location.state.conferenceRoom;
-  const [currentPhoto, setCurrentPhoto] = useState(
-    conferenceRoom?.displayPhoto
-  );
+
   const { setForm } = useGlobalContext();
   const { setFormState } = useGlobalContext();
   const { handleShowBookingModal } = useGlobalContext();
+  const { conferenceAddOns } = useGlobalContext();
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   return (
     <>
       <PageHelmet pageTitle='Conferencing' />
@@ -26,15 +34,42 @@ function ConferencingPage() {
       <div>
         <section className='section-content padding-y bg'>
           <div className='container'>
-            <article className='card'>
+            <article className='card pb-30'>
               <div className='card-body'>
                 <div className='row'>
                   <aside className='col-md-8'>
-                    <article className='gallery-wrap'>
-                      <div className='card img-big-wrap'>
-                        <img src={currentPhoto} alt='' />
-                      </div>
-                    </article>
+                    <Swiper
+                      style={{
+                        "--swiper-navigation-color": "#fff",
+                        "--swiper-pagination-color": "#fff",
+                      }}
+                      spaceBetween={10}
+                      navigation={true}
+                      thumbs={{ swiper: thumbsSwiper }}
+                      modules={[FreeMode, Navigation, Thumbs]}
+                      className='mySwiper2'
+                    >
+                      {conferenceRoom.photos.map((photo) => (
+                        <SwiperSlide>
+                          <img key={photo} src={photo} alt='' />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                    <Swiper
+                      onSwiper={setThumbsSwiper}
+                      spaceBetween={10}
+                      slidesPerView={4}
+                      freeMode={true}
+                      watchSlidesProgress={true}
+                      modules={[FreeMode, Navigation, Thumbs]}
+                      className='mySwiper mt-20'
+                    >
+                      {conferenceRoom.photos.map((photo) => (
+                        <SwiperSlide style={{ margin: 10 }}>
+                          <img key={photo} src={photo} alt='' />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </aside>
                   <main className='col-md-4'>
                     <article>
@@ -72,19 +107,12 @@ function ConferencingPage() {
                           Book Conference
                         </Button>
                       </div>
-                      <article className='gallery-wrap'>
-                        <div className='thumbs-wrap'>
-                          {conferenceRoom.photos.map((photo) => (
-                            <img
-                              key={photo}
-                              src={photo}
-                              alt=''
-                              className='item-thumb'
-                              onClick={() => setCurrentPhoto(photo)}
-                            />
-                          ))}
-                        </div>
-                      </article>
+                      <h6>Available Add Ons:</h6>
+                      <ul className='list-check'>
+                        {conferenceAddOns.map((addon) => (
+                          <li key={addon.name}>{addon.name}</li>
+                        ))}
+                      </ul>
                     </article>
                   </main>
                 </div>

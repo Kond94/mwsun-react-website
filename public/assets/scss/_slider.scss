@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 120%;
     // background-image: -moz-linear-gradient(60deg, #690ed0 100%, #170da2 100%);
     // background-image: -ms-linear-gradient(60deg, #690ed0 100%, #170da2 100%);
     // background-image: -webkit-linear-gradient(
@@ -386,6 +386,14 @@
 }
 .home_slider_2 {
   background: url(../img/slider/homebg-2.jpg);
+  background-repeat: round;
+}
+.home_slider_3 {
+  background: url(../img/slider/homebg-3.jpg);
+  background-repeat: round;
+}
+.home_slider_4 {
+  background: url(../img/slider/homebg-4.jpg);
   background-repeat: round;
 }
 .h1_slider_wrapper {

@@ -1,4 +1,11 @@
 import "./Pages.css";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import AppHeader from "../components/shared/AppHeader";
 import Button from "react-bootstrap/Button";
@@ -12,11 +19,11 @@ import { useState } from "react";
 function AccommodationPage() {
   const location = useLocation();
   const room = location.state.room;
-  const [currentPhoto, setCurrentPhoto] = useState(room.displayPhoto);
 
   const { setForm } = useGlobalContext();
   const { setFormState } = useGlobalContext();
   const { handleShowBookingModal } = useGlobalContext();
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
       <PageHelmet pageTitle='Accommodation' />
@@ -25,37 +32,48 @@ function AccommodationPage() {
       <div>
         <section className='section-content padding-y bg'>
           <div className='container'>
-            <article className='card'>
+            <article className='card pb-30'>
               <div className='card-body'>
                 <div className='row'>
-                  <aside className='col-md-8'>
-                    <article className='gallery-wrap'>
-                      <div className='card img-big-wrap'>
-                        <img src={currentPhoto} alt='' />
-                      </div>
-                    </article>
+                  <aside className='col-md-8' style={{ height: 500 }}>
+                    <Swiper
+                      style={{
+                        "--swiper-navigation-color": "#fff",
+                        "--swiper-pagination-color": "#fff",
+                      }}
+                      spaceBetween={10}
+                      navigation={true}
+                      thumbs={{ swiper: thumbsSwiper }}
+                      modules={[FreeMode, Navigation, Thumbs]}
+                      className='mySwiper2'
+                    >
+                      {room.photos.map((photo) => (
+                        <SwiperSlide>
+                          <img key={photo} src={photo} alt='' />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                    <Swiper
+                      onSwiper={setThumbsSwiper}
+                      spaceBetween={10}
+                      slidesPerView={4}
+                      freeMode={true}
+                      watchSlidesProgress={true}
+                      modules={[FreeMode, Navigation, Thumbs]}
+                      className='mySwiper mt-20'
+                    >
+                      {room.photos.map((photo) => (
+                        <SwiperSlide style={{ margin: 10 }}>
+                          <img key={photo} src={photo} alt='' />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </aside>
                   <main className='col-md-4'>
                     <article>
                       <h3 className='title'>The {room.name}</h3>
                       <div>
-                        {/* <ul className='rating-stars'>
-                          <li className='stars-active'>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>
-                          </li>
-                          <li>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>{" "}
-                            <i className='fa fa-star'></i>
-                            <i className='fa fa-star'></i>
-                          </li>
-                        </ul>
-                        <span className='label-rating mr-3 text-muted'>
-                          7/10
-                        </span> */}
+                       
                       </div>
 
                       <hr />
@@ -87,19 +105,6 @@ function AccommodationPage() {
                           Reserve Room
                         </Button>
                       </div>
-                      <article className='gallery-wrap'>
-                        <div className='thumbs-wrap'>
-                          {room.photos.map((photo) => (
-                            <img
-                              key={photo}
-                              src={photo}
-                              alt=''
-                              className='item-thumb'
-                              onClick={() => setCurrentPhoto(photo)}
-                            />
-                          ))}
-                        </div>
-                      </article>
                     </article>
                   </main>
                 </div>

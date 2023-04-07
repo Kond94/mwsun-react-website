@@ -21,6 +21,14 @@ const LandingSlider = () => {
       id: 2,
       bgImg: "home_slider_2",
     },
+    {
+      id: 2,
+      bgImg: "home_slider_3",
+    },
+    {
+      id: 2,
+      bgImg: "home_slider_4",
+    },
   ];
   // slick setting
   const settings = {
@@ -73,11 +81,30 @@ const LandingSlider = () => {
                   <div className='row'>
                     <div className='col-xl-9 col-lg-9 col-md-10 col-sm-10'>
                       <div className='slider__content'>
-                        <span>Welcome to...</span>
-                        <h1>Malawi Sun Hotel</h1>
+                        {/* <span
+                          style={{
+                            color: "#d2442f",
+                          }}
+                        >
+                          Welcome to...
+                        </span> */}
+                        <h1
+                          style={{
+                            // backgroundColor: "#d2442f",
+                            borderRadius: 5,
+                            flex: 0.5,
+                          }}
+                        >
+                          Malawi Sun Hotel
+                        </h1>
+
                         <div className='slider__btn'>
                           <Button
-                            variant='light'
+                            // variant='light'
+                            style={{
+                              backgroundColor: "#d2442f",
+                              borderColor: "#fff",
+                            }}
                             onClick={() => {
                               setForm("0");
                               setFormState(null);

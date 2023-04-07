@@ -1,22 +1,22 @@
-.app{
+.app {
   max-width: 1200px;
   width: 100%;
   margin: 100px auto;
   box-shadow: 0 0 5px #ccc;
 }
-.details{
+.details {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 30px 0;
 }
-.details .big-img{
+.details .big-img {
   max-width: 500px;
   min-width: 290px;
   overflow: hidden;
   margin: 25px;
 }
-.big-img img{
+.big-img img {
   width: 100%;
   height: 100%;
   max-height: 400px;
@@ -24,24 +24,24 @@
   object-fit: cover;
 }
 
-.details .box{
+.details .box {
   max-width: 500px;
   min-width: 290px;
   margin: 25px;
 }
-.box .row{
+.box .row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.box .row h2{
+.box .row h2 {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-.box .row span{
+.box .row span {
   color: crimson;
 }
-.box .colors button{
+.box .colors button {
   width: 30px;
   height: 30px;
   border: 1px solid #333;
@@ -49,18 +49,18 @@
   margin-right: 5px;
   cursor: pointer;
 }
-.box p{
+.box p {
   line-height: 1.5;
   margin: 15px 0;
 }
-.thumb{
+.thumb {
   width: 100%;
   height: 100px;
   display: flex;
   cursor: pointer;
   margin: 10px 0;
 }
-.thumb img{
+.thumb img {
   width: 90px;
   height: 100%;
   display: block;
@@ -70,11 +70,11 @@
   opacity: 0.7;
   border-radius: 5px;
 }
-.thumb img.active{
+.thumb img.active {
   opacity: 1;
   border: 1px solid lightseagreen;
 }
-.box .cart{
+.box .cart {
   background: #333;
   color: white;
   outline: none;
@@ -84,11 +84,79 @@
   margin-top: 15px;
 }
 
-@media (max-width: 500px){
-  .thumb{
+@media (max-width: 500px) {
+  .thumb {
     height: 50px;
   }
-  .thumb img{
+  .thumb img {
     width: 50px;
   }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body {
+  background: #000;
+  color: #000;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
