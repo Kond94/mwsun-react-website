@@ -100,11 +100,7 @@ const LandingSlider = () => {
 
                         <div className='slider__btn'>
                           <Button
-                            // variant='light'
-                            style={{
-                              backgroundColor: "#d2442f",
-                              borderColor: "#fff",
-                            }}
+                            variant='light'
                             onClick={() => {
                               setForm("0");
                               setFormState(null);
