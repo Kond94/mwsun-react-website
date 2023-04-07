@@ -1,5 +1,3 @@
-import { CgArrowLongRight } from "react-icons/cg";
-import { Link } from "react-router-dom";
 import React from "react";
 
 const ServiceCard = ({ icon, title, background, link }) => {

@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 
-import React, { useState } from "react";
+import React from "react";
 
 import AccommodationBookingForm from "./AccommodationBookingForm";
 import BanquetingBookingForm from "./BanquetingBookingFrorm";

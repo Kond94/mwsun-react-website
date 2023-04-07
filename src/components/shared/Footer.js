@@ -4,7 +4,6 @@ import {
   FaInstagram,
   FaPhoneAlt,
   FaTwitter,
-  FaVimeoV,
 } from "react-icons/fa";
 
 import { BiMap } from "react-icons/bi";

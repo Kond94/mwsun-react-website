@@ -1,6 +1,5 @@
 import BookingModal from "../BookingModal";
 import Button from "react-bootstrap/Button";
-import { FaSearch } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import useGlobalContext from "../../hooks/useGlobalContext";

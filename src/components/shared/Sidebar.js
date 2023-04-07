@@ -1,4 +1,4 @@
-import { FaEnvelope, FaPhoneAlt, FaSearch } from "react-icons/fa";
+import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
 import { BiMap } from "react-icons/bi";
 import Collapsible from "react-collapsible";
