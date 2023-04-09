@@ -110,7 +110,7 @@ function BanquetingPage() {
                       <h6>Available Add Ons:</h6>
                       <ul className='list-check'>
                         {banquetAddOns.map((addon) => (
-                          <li key={addon.name}>{addon.name}</li>
+                          <li key={addon.name}>{addon.name} @ Mk{addon.price.toLocaleString("en-Us")}</li>
                         ))}
                       </ul>
                     </article>
