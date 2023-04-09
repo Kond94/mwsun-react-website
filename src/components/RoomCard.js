@@ -24,6 +24,9 @@ const RoomCard = ({ room }) => {
               <Link to='/accommodation' state={{ room: room }}>
                 {room.name}
               </Link>
+              <p style={{ color: "white" }}>
+                Mk{room.price.toLocaleString("en-US")}
+              </p>
             </h3>
           </div>
         </div>

@@ -40,8 +40,8 @@ function BanquetingPage() {
                   <aside className='col-md-8'>
                     <Swiper
                       style={{
-                        "--swiper-navigation-color": "#fff",
-                        "--swiper-pagination-color": "#fff",
+                        "--swiper-navigation-color": "#ffca2c",
+                        "--swiper-pagination-color": "#ffca2c",
                       }}
                       spaceBetween={10}
                       navigation={true}
