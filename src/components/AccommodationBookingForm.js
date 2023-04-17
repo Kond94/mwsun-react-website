@@ -71,7 +71,8 @@ const AccommodationBookingForm = ({ formState }) => {
     setIsSubmitting(true);
     await axios
       .post(
-        process.env.REACT_APP_API_URL + "/api/accommodation-bookings",
+        process.env.REACT_APP_API_URL +
+          "/api/accommodation-bookings?populate=deep",
         {
           data: {
             ...data,

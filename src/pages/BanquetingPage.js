@@ -3,7 +3,8 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
+import ListGroup from "react-bootstrap/ListGroup";
+import Badge from "react-bootstrap/Badge";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -15,6 +16,7 @@ import PageHelmet from "../components/shared/PageHelmet";
 import useGlobalContext from "../hooks/useGlobalContext";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import DynamicIcon from "../components/shared/DynamicIcon";
 
 function BanquetingPage() {
   const location = useLocation();
@@ -50,8 +52,8 @@ function BanquetingPage() {
                       className='mySwiper2'
                     >
                       {banquetRoom.photos.map((photo) => (
-                        <SwiperSlide>
-                          <img key={photo} src={photo} alt='' />
+                        <SwiperSlide key={photo}>
+                          <img src={photo} alt='' />
                         </SwiperSlide>
                       ))}
                     </Swiper>
@@ -65,8 +67,8 @@ function BanquetingPage() {
                       className='mySwiper mt-20'
                     >
                       {banquetRoom.photos.map((photo) => (
-                        <SwiperSlide style={{ margin: 10 }}>
-                          <img key={photo} src={photo} alt='' />
+                        <SwiperSlide key={photo} style={{ margin: 10 }}>
+                          <img src={photo} alt='' />
                         </SwiperSlide>
                       ))}
                     </Swiper>
@@ -108,11 +110,18 @@ function BanquetingPage() {
                         </Button>
                       </div>
                       <h6>Available Add Ons:</h6>
-                      <ul className='list-check'>
+                      <ListGroup horizontal>
                         {banquetAddOns.map((addon) => (
-                          <li key={addon.name}>{addon.name} @ Mk{addon.price.toLocaleString("en-Us")}</li>
+                          <ListGroup.Item key={addon.name}>
+                            <DynamicIcon nameIcon={addon.icon} />
+                            <Badge bg='primary' pill className='mr-5'>
+                              14
+                            </Badge>
+                            {addon.name} @ Mk
+                            {addon.price.toLocaleString("en-Us")}
+                          </ListGroup.Item>
                         ))}
-                      </ul>
+                      </ListGroup>
                     </article>
                   </main>
                 </div>

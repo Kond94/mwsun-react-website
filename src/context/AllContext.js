@@ -50,7 +50,8 @@ const AllContext = ({ children }) => {
 
     axios
       .get(
-        process.env.REACT_APP_API_URL + "/api/promotion-rooms?populate=deep",
+        process.env.REACT_APP_API_URL +
+          "/api/promotion-rooms?populate=deep&sort[0]=room[price]",
         config
       )
       .then(({ data }) => {
@@ -97,7 +98,8 @@ const AllContext = ({ children }) => {
 
     axios
       .get(
-        process.env.REACT_APP_API_URL + "/api/banquet-rooms?populate=deep",
+        process.env.REACT_APP_API_URL +
+          "/api/banquet-rooms?populate=deep&sort[0]=price",
         config
       )
       .then(({ data }) => {
@@ -117,7 +119,11 @@ const AllContext = ({ children }) => {
         });
 
         // console.log("Banquet Rooms: " + JSON.stringify(banqRooms, null, 2));
-        setBanquetRooms(banqRooms);
+        setBanquetRooms(
+          banqRooms.sort(function (a, b) {
+            return a.price - b.price;
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -137,6 +143,7 @@ const AllContext = ({ children }) => {
             name: banquetAddOn.attributes.name,
             icon: banquetAddOn.attributes.icon,
             price: banquetAddOn.attributes.price,
+            perPerson: banquetAddOn.attributes.perPerson,
           };
         });
 
@@ -150,7 +157,8 @@ const AllContext = ({ children }) => {
       });
     axios
       .get(
-        process.env.REACT_APP_API_URL + "/api/conference-rooms?populate=deep",
+        process.env.REACT_APP_API_URL +
+          "/api/conference-rooms?populate=deep&sort[0]=price",
         config
       )
       .then(({ data }) => {
@@ -170,7 +178,11 @@ const AllContext = ({ children }) => {
         });
 
         // console.log("Coference Rooms: " + JSON.stringify(confRooms, null, 2));
-        setConferenceRooms(confRooms);
+        setConferenceRooms(
+          confRooms.sort(function (a, b) {
+            return a.price - b.price;
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -190,6 +202,7 @@ const AllContext = ({ children }) => {
             name: conferenceAddOn.attributes.name,
             icon: conferenceAddOn.attributes.icon,
             price: conferenceAddOn.attributes.price,
+            perPerson: conferenceAddOn.attributes.perPerson,
           };
         });
 
@@ -204,7 +217,8 @@ const AllContext = ({ children }) => {
 
     axios
       .get(
-        process.env.REACT_APP_API_URL + "/api/packages?populate=deep",
+        process.env.REACT_APP_API_URL +
+          "/api/packages?populate=deep&sort[0]=price",
         config
       )
       .then(({ data }) => {
@@ -259,7 +273,11 @@ const AllContext = ({ children }) => {
         });
         // console.log("Rooms: " + JSON.stringify(roo, null, 2));
 
-        setRooms(roo);
+        setRooms(
+          roo.sort(function (a, b) {
+            return a.price - b.price;
+          })
+        );
       })
       .catch((error) => {
         console.log(error);

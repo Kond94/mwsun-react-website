@@ -65,8 +65,8 @@ function ConferencingPage() {
                       className='mySwiper mt-20'
                     >
                       {conferenceRoom.photos.map((photo) => (
-                        <SwiperSlide style={{ margin: 10 }}>
-                          <img key={photo} src={photo} alt='' />
+                        <SwiperSlide key={photo} style={{ margin: 10 }}>
+                          <img src={photo} alt='' />
                         </SwiperSlide>
                       ))}
                     </Swiper>

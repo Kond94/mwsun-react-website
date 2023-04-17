@@ -17,22 +17,22 @@ const TeamArea = () => {
             <TeamCard
               image='person'
               name='Chite Kumwenda'
-              title='accommodation Manager'
+              title='Accommodation Manager'
             />
             <TeamCard
               image='person'
               name='Clement Kapanda'
-              title='Food & Beverage Manager'
+              title='Conferencing and banqueting Manager'
             />
             <TeamCard
               image='person'
               name='Innocent Mushava'
-              title='Finance Director'
+              title='Finance Controller'
             />
 
             <TeamCard
               image='person'
-              name='Yohanne Banda'
+              name='Yohanne Kamanga'
               title='Human Resource Manager'
             />
           </div>
