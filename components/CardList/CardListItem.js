@@ -9,6 +9,7 @@ import {
 import Button from "/components/CustomButtons/Button.js";
 import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { slugify } from "../../utils";
@@ -41,14 +42,16 @@ const CardListItem = ({ item, slug }) => {
             onClick={() => router.push("/" + path + "/" + slugify(item.title))}
             style={{ position: "relative", cursor: "pointer" }}
           >
-            <CardMedia
-              onClick={() => {}}
+            <Image
               className='grow'
-              image={item.displayPhoto.url}
+              src={item.displayPhoto.url}
               title={item.title}
+              width={"100vh"}
+              height={"100vh"}
               style={{
                 boxShadow: "20px 20px 20px #e2e2e2",
               }}
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             />
             <Paper
               style={{

@@ -37,7 +37,7 @@ export default function Conferencing(props) {
         }}
         {...rest}
       />
-      <Parallax small filter image='/img/mwsun_header.jpg' />
+      <Parallax small filter image='/img/mwsun_header2.jpg' />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>

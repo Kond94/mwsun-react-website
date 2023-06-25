@@ -41,7 +41,7 @@ export default function Accommodation(props) {
         }}
         {...rest}
       />
-      <Parallax small filter image='/img/mwsun_header.jpg' />
+      <Parallax small filter image='/img/mwsun_header2.jpg' />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <GridContainer justify='center'>

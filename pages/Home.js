@@ -43,7 +43,7 @@ export default function Home(props) {
         }}
         {...rest}
       />
-      <Parallax filter image='/img/mwsun_header.jpg'>
+      <Parallax filter image='/img/mwsun_header2.jpg'>
         <VideoPopup videoId='UofeKQJEt1E' />
 
         <div className={classes.container}>
