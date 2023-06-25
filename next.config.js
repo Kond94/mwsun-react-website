@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  distDir: "build",
+
   images: {
     loader: "default",
     domains: [
       "localhost",
-      "the-baobab-discourses-strapi.onrender.com",
+      "mwsun-strapi.onrender.com",
       "res.cloudinary.com",
-      "the-baobab-discourses.com",
+      "malawisunhotel.com.com",
     ],
   },
 };
