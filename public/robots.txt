@@ -1,3 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: https://www.malawisunhotel.com
+
+# Sitemaps
+Sitemap: https://www.malawisunhotel.com/sitemap.xml
+Sitemap: https://www.the-baobab-discourses.com/server-sitemap.xml
