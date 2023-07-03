@@ -1,13 +1,11 @@
 import * as yup from "yup";
 
 import { ErrorMessage, Formik } from "formik";
-import React, { useState } from "react";
 
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import React from "react";
 import Row from "react-bootstrap/Row";
-import axios from "axios";
-import { toast } from "react-toastify";
 
 const schema = yup.object().shape({
   name: yup.string().required("This field is required"),

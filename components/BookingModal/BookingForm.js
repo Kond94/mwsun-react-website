@@ -14,13 +14,6 @@ import { toast } from "react-toastify";
 import useGlobalContext from "../../hooks/useGlobalContext";
 import { useState } from "react";
 
-var pattern = "^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$";
-
-const BookerDetailsSchema = yup.object().shape({
-  name: yup.string().required("This field is required"),
-  phone: yup.string().required("This field is required"),
-  email: yup.string().email("Invalid email").required("Required"),
-});
 function Form() {
   const [nextForm, setNextForm] = useState("bookerDetails");
   const { form, rooms, setShowBookingModal } = useGlobalContext();
@@ -72,7 +65,6 @@ function Form() {
               formData={formData}
               setFormData={setFormData}
               setPreviousForm={setPreviousForm}
-              schema={BookerDetailsSchema}
             />
           </Box>
         );

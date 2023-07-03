@@ -1,18 +1,12 @@
-import "react-datepicker/dist/react-datepicker.css";
-import "react-toastify/dist/ReactToastify.css";
-
 import * as yup from "yup";
 
 import { ErrorMessage, Formik, useField, useFormikContext } from "formik";
-import React, { useState } from "react";
 
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import DatePicker from "react-datepicker";
 import Form from "react-bootstrap/Form";
+import React from "react";
 import Row from "react-bootstrap/Row";
-import axios from "axios";
-import { toast } from "react-toastify";
 import useGlobalContext from "../../hooks/useGlobalContext";
 
 const schema = yup.object().shape({
@@ -49,54 +43,14 @@ const DatePickerField = ({ ...props }) => {
   );
 };
 const BanquetingBookingForm = ({ formData, setFormData }) => {
-  const { banquetRooms, setFormState, formState } = useGlobalContext();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { banquetRooms } = useGlobalContext();
 
-  const notify = () =>
-    toast.success(
-      "You have successfully made your reservation. Please wait for a response from our team.",
-      { autoClose: 6000 }
-    );
-
-  const postData = async (data) => {
-    setIsSubmitting(true);
-    await axios
-      .post(
-        process.env.REACT_APP_API_URL +
-          "/api/banqueting-bookings?populate=deep",
-        {
-          data: {
-            ...data,
-            date: data.commencementDate.toISOString().split("T")[0],
-            time: data.commencementTime.toISOString().split("T")[0],
-            banquet_room: data.room,
-          },
-        },
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-          },
-        }
-      )
-      .then((response) => {
-        setShowBookingModal(false);
-        notify();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    setIsSubmitting(false);
-  };
-  const today = new Date();
   return (
     <>
       <Formik
         validateOnBlur
         validationSchema={schema}
-        onSubmit={postData}
+        onSubmit={() => {}}
         initialValues={{
           commencementDate: formData.commencementDate,
           commencementTime: formData.commencementTime,
@@ -216,24 +170,6 @@ const BanquetingBookingForm = ({ formData, setFormData }) => {
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>
-            <Row>
-              <Form.Group
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                as={Col}
-                className='m-3'
-              >
-                {/* <Button disabled={isSubmitting} variant='primary' type='submit'>
-                  {isSubmitting && (
-                    <span className='spinner-border spinner-border-sm mr-1'></span>
-                  )}
-                  Submit
-                </Button> */}
-              </Form.Group>
-            </Row>
           </Form>
         )}
       </Formik>
