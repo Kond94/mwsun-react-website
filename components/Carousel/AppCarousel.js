@@ -40,7 +40,6 @@ export default function AppCarousel({ images }) {
                       width={"100%"}
                       height={"70%"}
                       layout='responsive'
-                      blurDataURL='/img/placeholder.png'
                     />
                     {/* <div className='slick-caption'>
                       <h4>

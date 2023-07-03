@@ -32,33 +32,6 @@ export default function Footer(props) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href='https://www.creative-tim.com/?ref=njsmk-footer'
-                className={classes.block}
-                target='_blank'
-              >
-                Creative Tim
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href='https://www.creative-tim.com/presentation?ref=njsmk-footer'
-                className={classes.block}
-                target='_blank'
-              >
-                About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href='http://blog.creative-tim.com/?ref=njsmk-footer'
-                className={classes.block}
-                target='_blank'
-              >
-                Blog
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
                 href='https://www.creative-tim.com/license?ref=njsmk-footer'
                 className={classes.block}
                 target='_blank'

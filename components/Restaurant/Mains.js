@@ -69,7 +69,6 @@ export default function Mains({ meals, type }) {
                     src={modalMeal !== null ? modalMeal?.displayPhoto?.url : ""}
                     width={800}
                     height={800}
-                    blurDataURL='/img/placeholder.png'
                   />
                   <p id='transition-modal-description'>
                     {modalMeal !== null ? modalMeal.description : ""}
@@ -85,7 +84,7 @@ export default function Mains({ meals, type }) {
         <br />
 
         <h2 className='extras-heading' style={{}}>
-          Mains
+          Aamari Menu
         </h2>
         {allCategories.map((category) => (
           <div key={category} className={classes.root}>

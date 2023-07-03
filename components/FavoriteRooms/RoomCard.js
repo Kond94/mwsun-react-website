@@ -21,7 +21,6 @@ const RoomCard = ({ room }) => {
             width={"100%"}
             height={"70%"}
             layout='responsive'
-            blurDataURL='/img/placeholder.png'
           />
           <div
             className='room__info  pt-10 pb-20'

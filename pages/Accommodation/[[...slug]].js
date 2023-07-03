@@ -91,13 +91,22 @@ export default function Accommodation(props) {
               <br />
               <GridItem>
                 <GridContainer
-                  direction='column'
-                  style={{ textAlign: "center" }}
+                  direction='row'
+                  style={{
+                    justifyContent: "center",
+                  }}
                 >
                   {room.amenities.map((amenity) => {
                     const Icon = useIcons(amenity.icon);
                     return (
-                      <GridItem style={{ margin: 5 }} key={amenity.id}>
+                      <GridItem
+                        style={{
+                          textAlign: "center",
+                          margin: 10,
+                          width: "auto",
+                        }}
+                        key={amenity.id}
+                      >
                         {Icon && <Icon color='primary' />}
                         <p>{amenity.name}</p>
                       </GridItem>

@@ -33,8 +33,12 @@ const AllContext = ({ children }) => {
         fetchAPI("/conference-addons", { populate: ["deep"] }),
         fetchAPI("/banquet-rooms", { populate: ["deep"] }),
         fetchAPI("/banquet-addons", { populate: ["deep"] }),
-        fetchAPI("/meals", { populate: ["deep"] }),
+        fetchAPI("/meals", {
+          populate: ["deep"],
+          pagination: { pageSize: 100 },
+        }),
       ]);
+
       setRooms(results[0].data);
       setPromotionRooms(results[1].data);
       setPackages(results[2].data);

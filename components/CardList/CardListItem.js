@@ -46,7 +46,6 @@ const CardListItem = ({ item, slug }) => {
                 boxShadow: "20px 20px 20px #e2e2e2",
               }}
               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-              blurDataURL='/img/placeholder.png'
             />
             <Paper
               style={{

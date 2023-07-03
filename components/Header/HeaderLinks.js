@@ -60,7 +60,7 @@ export default function HeaderLinks(props) {
             color='transparent'
             target='_blank'
             className={classes.navLink}
-            style={{ fontSize: 14 }}
+            style={{ fontSize: 14, margin: 5 }}
           >
             Home
           </Button>
@@ -68,7 +68,7 @@ export default function HeaderLinks(props) {
             onClick={() => router.push("/Accommodation")}
             color='transparent'
             target='_blank'
-            style={{ fontSize: 14 }}
+            style={{ fontSize: 14, margin: 5 }}
             className={classes.navLink}
           >
             Accommodation
@@ -77,7 +77,7 @@ export default function HeaderLinks(props) {
         <ListItem className={classes.listItem}>
           <Button
             onClick={() => router.push("/Conferencing")}
-            style={{ fontSize: 14 }}
+            style={{ fontSize: 14, margin: 5 }}
             color='transparent'
             target='_blank'
             className={classes.navLink}
@@ -89,7 +89,7 @@ export default function HeaderLinks(props) {
           <Button
             onClick={() => router.push("/Banqueting")}
             color='transparent'
-            style={{ fontSize: 14 }}
+            style={{ fontSize: 14, margin: 5 }}
             target='_blank'
             className={classes.navLink}
           >
@@ -99,7 +99,7 @@ export default function HeaderLinks(props) {
         <ListItem className={classes.listItem}>
           <Button
             onClick={() => router.push("/Catering")}
-            style={{ fontSize: 14 }}
+            style={{ fontSize: 14, margin: 5 }}
             color='transparent'
             target='_blank'
             className={classes.navLink}
@@ -124,7 +124,7 @@ export default function HeaderLinks(props) {
               setShowBookingModal(true);
             }}
             color='warning'
-            style={{ fontSize: 14, color: "#fff" }}
+            style={{ fontSize: 14, color: "#fff", margin: 5 }}
             // className={classes.navLink}
           >
             BOOK NOW

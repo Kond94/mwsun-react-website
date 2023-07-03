@@ -21,11 +21,10 @@ const Menu = ({ items }) => {
                     }
                     alt={name}
                     className='photo'
-                    style={{ borderRadius: 15, boxShadow: "0 0 1rem" }}
                     width={"100%"}
                     height={"100%"}
                     layout='responsive'
-                    blurDataURL='/img/placeholder.png'
+                    style={{ borderRadius: 15 }}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>

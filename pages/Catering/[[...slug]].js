@@ -76,7 +76,6 @@ export default function Catering(props) {
 
   const classes = useStyles();
   const { meal, allMeals = [], slug, ...rest } = props;
-
   return (
     <Provider>
       <Dialog
@@ -180,7 +179,6 @@ export default function Catering(props) {
                     </div>
                   </Card>
                 </div>
-
                 <RestaurantPage meals={allMeals} />
               </>
             ) : (
@@ -199,7 +197,10 @@ export async function getServerSideProps({ params }) {
 
   try {
     mealsResult = await Promise.all([
-      fetchAPI("/meals", { populate: ["deep"] }),
+      fetchAPI("/meals", {
+        populate: ["deep"],
+        pagination: { pageSize: 100 },
+      }),
     ]);
   } catch (error) {
     console.log(error);

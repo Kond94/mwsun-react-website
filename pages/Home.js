@@ -53,7 +53,6 @@ export default function Home(props) {
             <NextImage
               width={800}
               height={800}
-              blurDataURL='/img/placeholder.png'
               className='shape triangle'
               src='/assets/img/icon/slider/triangle.png'
               alt='triangle'
@@ -61,7 +60,6 @@ export default function Home(props) {
             <NextImage
               width={800}
               height={800}
-              blurDataURL='/img/placeholder.png'
               className='shape dotted-square'
               src='/assets/img/icon/slider/dotted-square.png'
               alt='dotted-square'
@@ -69,7 +67,6 @@ export default function Home(props) {
             <NextImage
               width={800}
               height={800}
-              blurDataURL='/img/placeholder.png'
               className='shape solid-square'
               src='/assets/img/icon/slider/solid-square.png'
               alt='solid-square'
@@ -77,7 +74,6 @@ export default function Home(props) {
             <NextImage
               width={800}
               height={800}
-              blurDataURL='/img/placeholder.png'
               className='shape circle'
               src='/assets/img/icon/slider/circle.png'
               alt='circle'

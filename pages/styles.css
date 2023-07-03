@@ -302,13 +302,13 @@ Menu
   margin: 0 0.5rem;
   letter-spacing: 1px;
   padding: 0.375rem 0.75rem;
-  color: var(--clr-gold);
+  color: var(#d1442e);
   cursor: pointer;
   transition: var(--transition);
   border-radius: var(--radius);
 }
 .filter-btn:hover {
-  background: var(--clr-gold);
+  background: var(#d1442e);
   color: var(--clr-white);
 }
 .section-center {
