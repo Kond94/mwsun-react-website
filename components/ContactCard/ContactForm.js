@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import axios from "axios";
+import { fetchAPI } from "../../lib/api";
 import { toast } from "react-toastify";
 
 const schema = yup.object().shape({
@@ -21,39 +21,55 @@ const schema = yup.object().shape({
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const notify = () =>
-    toast.success(
-      "You have successfully sent your message. Please wait for a response from our team.",
-      { autoClose: 6000 }
-    );
-
-  const postData = async (data) => {
+  const postData = async (event) => {
     setIsSubmitting(true);
-    await axios
-      .post(
-        process.env.REACT_APP_API_URL + "/api/messages",
-        {
-          data: {
-            ...data,
-            from: data.name,
-          },
-        },
+    const notify = () =>
+      toast.success(
+        "You have successfully sent your message. Please wait for a response from our team.",
+        { autoClose: 6000 }
+      );
+    // Get data from the form.
+    const data = {
+      from: event.name,
+      email: event.email,
+      phone: event.phone,
+      subject: event.subject,
+      message: event.message,
+    };
 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-          },
-        }
-      )
-      .then((response) => {
+    // Send the data to the server in JSON format.
+    const JSONdata = JSON.stringify({ data: data });
+
+    // Form the request for sending data to the server.
+    const options = {
+      // The method is POST because we are sending data.
+      method: "POST",
+      // Tell the server we're sending JSON.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // Body of the request is the JSON data we created above.
+      body: JSONdata,
+    };
+    try {
+      const [eventRes] = await Promise.all([
+        fetchAPI("/messages", {}, options),
+      ]).then((response) => {
+        setIsSubmitting(false);
+
         notify();
-      })
-      .catch((error) => {
-        console.log(error);
       });
+    } catch (error) {
+      setIsSubmitting(false);
 
-    setIsSubmitting(false);
+      console.log(error);
+    }
+
+    document.getElementsByName("name").value = "";
+    document.getElementsByName("email").value = "";
+    document.getElementsByName("phone").value = "";
+    document.getElementsByName("subject").value = "";
+    document.getElementsByName("message").value = "";
   };
   return (
     <>

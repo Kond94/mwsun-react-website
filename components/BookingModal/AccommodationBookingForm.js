@@ -16,37 +16,46 @@ import { toast } from "react-toastify";
 import useGlobalContext from "../../hooks/useGlobalContext";
 
 const schema = yup.object().shape({
-  arrivalDate: yup.date().required("This field is required"),
-  departureDate: yup.date().required("This field is required"),
+  arrivalDate: yup
+    .date()
+    .min(new Date(), "Arrival Date must be from today onwards")
+    .required("This field is required"),
+  departureDate: yup
+    .date()
+    .required("This field is required")
+    .min(new Date(), "Departure Date must be from today onwards"),
   room: yup.number().required("This field is required"),
   adults: yup.number().required("This field is required"),
   children: yup.number().required("This field is required"),
   specialRequest: yup.string().required("This field is required"),
 });
 
-const DatePickerField = ({ ...props }) => {
-  const { setFieldValue } = useFormikContext();
-  const [field] = useField(props);
-
-  return (
-    <DatePicker
-      {...field}
-      {...props}
-      selected={(field.value && new Date(field.value)) || null}
-      onChange={(val) => {
-        setFieldValue(field.name, val);
-      }}
-      customInput={
-        <Form.Control
-          type='text'
-          value={(field.value && new Date(field.value)) || null}
-          isValid={props.touched[props.name] && !props.errors[props.name]}
-        />
-      }
-    />
-  );
-};
 const AccommodationBookingForm = ({ formData, setFormData }) => {
+  const DatePickerField = ({ ...props }) => {
+    const { setFieldValue } = useFormikContext();
+    const [field] = useField(props);
+
+    return (
+      <DatePicker
+        {...field}
+        {...props}
+        minDate={props.minDate}
+        selected={(field.value && new Date(field.value)) || null}
+        onChange={(val) => {
+          setFieldValue(field.name, val);
+          setFormData({ ...formData, [field.name]: val });
+        }}
+        customInput={
+          <Form.Control
+            type='text'
+            value={(field.value && new Date(field.value)) || null}
+            isValid={props.touched[props.name] && !props.errors[props.name]}
+          />
+        }
+      />
+    );
+  };
+
   const { rooms, setFormState, formState } = useGlobalContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -97,17 +106,12 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
         validationSchema={schema}
         onSubmit={postData}
         initialValues={{
-          arrivalDate: today,
-          departureDate: tomorrow,
-          room:
-            formData.room === null
-              ? rooms.length > 0
-                ? rooms[rooms.length - 1].id
-                : formData.room
-              : 1,
-          adults: 1,
-          children: 0,
-          specialRequest: "None",
+          arrivalDate: formData.arrivalDate,
+          departureDate: formData.departureDate,
+          room: formData.room,
+          adults: formData.adults,
+          children: formData.children,
+          specialRequest: formData.specialRequest,
         }}
       >
         {({
@@ -134,6 +138,7 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
                   name='arrivalDate'
                   touched={touched}
                   errors={errors}
+                  minDate={today}
                 />
                 <ErrorMessage name='arrivalDate'>
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
@@ -147,6 +152,7 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
                   name='departureDate'
                   touched={touched}
                   errors={errors}
+                  minDate={values.arrivalDate}
                 />
                 <ErrorMessage name='departureDate'>
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
@@ -164,7 +170,7 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
               >
                 {rooms.map((room) => (
                   <option key={room.id.toString()} value={room.id}>
-                    {room.title} (Mk{room.price.toLocaleString("en-US")})
+                    {room.name} (Mk{room.price.toLocaleString("en-US")})
                   </option>
                 ))}
               </Form.Select>

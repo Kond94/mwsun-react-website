@@ -23,7 +23,7 @@ export default function GridItem(props) {
   const { children, className, ...rest } = props;
   return (
     <Grid
-      direction='column'
+      // direction='column'
       item
       {...rest}
       className={classes.grid + " " + className}

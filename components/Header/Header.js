@@ -4,10 +4,9 @@ import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import Image from "next/image";
-import Link from "next/link";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
+import NextImage from "next/image";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 import React from "react";
@@ -74,11 +73,12 @@ export default function Header(props) {
   });
   const brandComponent = (
     <Button onClick={() => router.push("/Home")}>
-      <img
+      <NextImage
         src={"/img/logo/" + imgSrc}
         alt='...'
         className={classes.imgRoundedCircle + " " + classes.imgFluid}
-        style={{ width: 75, height: 75 }}
+        width={75}
+        height={75}
       />
     </Button>
   );

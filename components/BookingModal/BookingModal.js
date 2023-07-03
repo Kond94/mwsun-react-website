@@ -1,20 +1,65 @@
 /* eslint-disable eqeqeq */
 
-import { Box, Button, Title } from "@mantine/core";
-import { Paper, makeStyles } from "@material-ui/core";
+import { Slide, makeStyles } from "@material-ui/core";
 
-import AccommodationBookingForm from "./AccommodationBookingForm";
-import Backdrop from "@material-ui/core/Backdrop";
-import BanquetingBookingForm from "./BanquetingBookingForm";
 import BookingForm from "./BookingForm";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ConferencingBookingForm from "./ConferencingBookingForm";
-import Container from "react-bootstrap/Container";
-import Modal from "@material-ui/core/Modal";
+import CloseIcon from "@material-ui/icons/Close";
+import Dialog from "@material-ui/core/Dialog";
+import IconButton from "@material-ui/core/IconButton";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import React from "react";
-import ToggleButton from "react-bootstrap/ToggleButton";
+import Typography from "@material-ui/core/Typography";
 import useGlobalContext from "../../hooks/useGlobalContext";
+import { withStyles } from "@material-ui/core/styles";
 
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+});
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant='h6'>{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label='close'
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='up' ref={ref} {...props} />;
+});
 const useModalStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -40,28 +85,25 @@ const BookingModal = () => {
   const { form, setShowBookingModal, showBookingModal } = useGlobalContext();
 
   return (
-    <Modal
-      aria-labelledby='transition-modal-title'
-      aria-describedby='transition-modal-description'
-      className={modalClasses.modal}
+    <Dialog
+      fullScreen
       open={showBookingModal}
       onClose={() => setShowBookingModal(false)}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
+      TransitionComponent={Transition}
+      transitionDuration={500}
     >
-      <Paper>
+      <DialogTitle
+        id='customized-dialog-title'
+        onClose={() => setShowBookingModal(false)}
+      >
+        Booking Form
+      </DialogTitle>
+      <DialogContent>
         <BookingForm bookingType={form} />
-      </Paper>
-    </Modal>
+      </DialogContent>
+      {/* </Paper> */}
+    </Dialog>
   );
 };
 
 export default BookingModal;
-
-// <Box
-//           className='modalBox'
-//           sx={{ position: "absolute", overflowY: "scroll", maxHeight: "90%" }}
-//         >

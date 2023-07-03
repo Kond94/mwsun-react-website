@@ -56,7 +56,7 @@ export default function Conferencing(props) {
             <div className={classes.description}>
               <p>
                 {slug === "Conferencing"
-                  ? "Every room in Malawi Sun Hotel has its own unique character and allure. Find yourself in a modern space all while feeling that familiar sense of home."
+                  ? "If you are looking for a venue to host your next meeting, workshop or event, look no further than our hotel conference rooms. Our conference rooms are spacious, comfortable and affordable, with flexible seating arrangements and state-of-the-art equipment. You can also enjoy our catering services, Wi-Fi access and parking facilities. Our staff will assist you with every detail to ensure your event is a success. Whether you need a small boardroom or a large auditorium, our hotel conference rooms will meet your needs. Contact us today and book your conference room!"
                   : room.description}
               </p>
             </div>
@@ -75,14 +75,17 @@ export default function Conferencing(props) {
                 <br />
                 <br />
                 <GridItem>
-                  <GridContainer direction='row'>
+                  <GridContainer
+                    direction='column'
+                    style={{ textAlign: "center" }}
+                  >
                     {addons.map((addon) => {
                       const Icon = useIcons(addon.icon);
                       return (
-                        <div style={{ margin: 5 }} key={addon.id}>
+                        <GridItem style={{ margin: 5 }} key={addon.id}>
                           {Icon && <Icon color='primary' />}
                           <p>{addon.name}</p>
-                        </div>
+                        </GridItem>
                       );
                     })}
                   </GridContainer>
@@ -101,7 +104,6 @@ export default function Conferencing(props) {
                     items={allRooms.map((room) => {
                       return {
                         ...room,
-                        title: room.name,
                         amenities: addons,
                       };
                     })}

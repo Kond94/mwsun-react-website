@@ -56,7 +56,7 @@ function Confirm({ formData, setPreviousForm }) {
             title='Room'
             data={
               formData.room !== null
-                ? rooms.find((room) => room.id == formData.room).title
+                ? rooms.find((room) => room.id == formData.room).name
                 : ""
             }
           />
@@ -81,7 +81,10 @@ function Confirm({ formData, setPreviousForm }) {
           <Detail
             title='Commencement Time'
             data={
-              times.find((time) => time.id == formData.commencementTime).name
+              times.find(
+                (time) =>
+                  time.id.toString() === formData.commencementTime.toString()
+              ).name
             }
           />
           <Detail
@@ -115,7 +118,7 @@ function Confirm({ formData, setPreviousForm }) {
             title='Banquet Room'
             data={
               formData.room !== null
-                ? conferenceRooms.find((room) => room.id == formData.room).name
+                ? banquetRooms.find((room) => room.id == formData.room).name
                 : ""
             }
           />

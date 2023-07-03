@@ -8,12 +8,13 @@ import HeadMeta from "../components/HeadMeta/HeadMeta";
 // core components
 import Header from "/components/Header/Header.js";
 import HeaderLinks from "/components/Header/HeaderLinks.js";
+import NextImage from "next/image";
 // react components for routing our app without refresh
-import Link from "next/link";
 import Packages from "../components/Packages/Packages";
 import Parallax from "/components/Parallax/Parallax.js";
 import React from "react";
-import VideoPopup from "../components/LandingSlider/VideoPopup";
+import Skeleton from "react-loading-skeleton";
+import VideoPopup from "../components/VideoPopup/VideoPopup";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -24,7 +25,8 @@ import useGlobalContext from "../hooks/useGlobalContext";
 const useStyles = makeStyles(styles);
 
 export default function Home(props) {
-  const { promotionRooms, packages, setIsVideoOpen } = useGlobalContext();
+  const { promotionRooms, packages, setIsVideoOpen, isFetching } =
+    useGlobalContext();
 
   const classes = useStyles();
   const { ...rest } = props;
@@ -48,24 +50,36 @@ export default function Home(props) {
 
         <div className={classes.container}>
           <div className='slider__shape'>
-            <img
+            <NextImage
+              width={800}
+              height={800}
+              blurDataURL='/img/placeholder.png'
               className='shape triangle'
-              src='assets/img/icon/slider/triangle.png'
+              src='/assets/img/icon/slider/triangle.png'
               alt='triangle'
             />
-            <img
+            <NextImage
+              width={800}
+              height={800}
+              blurDataURL='/img/placeholder.png'
               className='shape dotted-square'
-              src='assets/img/icon/slider/dotted-square.png'
+              src='/assets/img/icon/slider/dotted-square.png'
               alt='dotted-square'
             />
-            <img
+            <NextImage
+              width={800}
+              height={800}
+              blurDataURL='/img/placeholder.png'
               className='shape solid-square'
-              src='assets/img/icon/slider/solid-square.png'
+              src='/assets/img/icon/slider/solid-square.png'
               alt='solid-square'
             />
-            <img
+            <NextImage
+              width={800}
+              height={800}
+              blurDataURL='/img/placeholder.png'
               className='shape circle'
-              src='assets/img/icon/slider/circle.png'
+              src='/assets/img/icon/slider/circle.png'
               alt='circle'
             />
           </div>

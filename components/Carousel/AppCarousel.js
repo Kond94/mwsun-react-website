@@ -6,6 +6,7 @@ import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
 // @material-ui/icons
 import Info from "@material-ui/icons/Info";
+import NextImage from "next/image";
 import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,17 +33,21 @@ export default function AppCarousel({ images }) {
               <Carousel {...settings}>
                 {images.map((image) => (
                   <div key={image.url}>
-                    <img
+                    <NextImage
                       src={image.url}
                       alt='First slide'
                       className='slick-image'
+                      width={"100%"}
+                      height={"70%"}
+                      layout='responsive'
+                      blurDataURL='/img/placeholder.png'
                     />
-                    <div className='slick-caption'>
+                    {/* <div className='slick-caption'>
                       <h4>
                         <Info className='slick-icons' />
                         {image.caption}
                       </h4>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </Carousel>

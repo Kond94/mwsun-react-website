@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { ErrorMessage, Formik } from "formik";
 import React, { useState } from "react";
 
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -17,51 +16,15 @@ const schema = yup.object().shape({
 });
 
 const BookerDetailsForm = ({ formData, setFormData }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const notify = () =>
-    toast.success(
-      "You have successfully sent your message. Please wait for a response from our team.",
-      { autoClose: 6000 }
-    );
-
-  const postData = async (data) => {
-    setIsSubmitting(true);
-    await axios
-      .post(
-        process.env.REACT_APP_API_URL + "/api/messages",
-        {
-          data: {
-            ...data,
-            from: data.name,
-          },
-        },
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-          },
-        }
-      )
-      .then((response) => {
-        notify();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    setIsSubmitting(false);
-  };
   return (
     <div>
       <Formik
         validationSchema={schema}
-        onSubmit={postData}
+        onSubmit={() => {}}
         initialValues={{
-          name: "",
-          phone: "",
-          email: "",
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
         }}
         validateOnBlur
       >
@@ -81,8 +44,12 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
             }}
             onBlur={handleBlur}
           >
-            <Form.Group className='mb-3'>
+            <Form.Group
+              className='mb-3 text-center'
+              style={{ width: "65%", margin: "auto" }}
+            >
               <Form.Control
+                className='text-center'
                 type='text'
                 name='name'
                 value={values.name}
@@ -96,9 +63,13 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
               </ErrorMessage>
             </Form.Group>
 
-            <Form.Group className='mb-3'>
+            <Form.Group
+              className='mb-3'
+              style={{ width: "65%", margin: "auto" }}
+            >
               <Form.Control
                 type='text'
+                className='text-center'
                 name='phone'
                 value={values.phone}
                 onChange={handleChange}
@@ -111,9 +82,13 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
               </ErrorMessage>
             </Form.Group>
 
-            <Form.Group className='mb-3'>
+            <Form.Group
+              className='mb-3'
+              style={{ width: "65%", margin: "auto" }}
+            >
               <Form.Control
                 type='email'
+                className='text-center'
                 name='email'
                 value={values.email}
                 onChange={handleChange}
@@ -135,14 +110,7 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
                 }}
                 as={Col}
                 className='m-3'
-              >
-                {/* <Button disabled={isSubmitting} variant='primary' type='submit'>
-                  {isSubmitting && (
-                    <span className='spinner-border spinner-border-sm mr-1'></span>
-                  )}
-                  Submit
-                </Button> */}
-              </Form.Group>
+              ></Form.Group>
             </Row>
           </Form>
         )}

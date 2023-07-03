@@ -1,6 +1,5 @@
-import { Box, Text, TextInput } from "@mantine/core";
-
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { Box } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -76,7 +75,7 @@ function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
 
   return (
     <Box sx={boxStyle}>
-      <Text>Whats would you like to book?</Text>
+      <p>Whats would you like to book?</p>
       <br />
       <br />
 
@@ -122,7 +121,7 @@ function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
                       {options.map((option, index) => (
                         <MenuItem
                           key={option}
-                          selected={index === selectedIndex}
+                          selected={option === formData.bookingType}
                           onClick={(event) =>
                             handleMenuItemClick(event, index, option)
                           }

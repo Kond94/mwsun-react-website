@@ -25,6 +25,11 @@ const schema = yup.object().shape({
 });
 
 const DatePickerField = ({ ...props }) => {
+  const times = [
+    { id: 1, name: "Morning" },
+    { id: 2, name: "Afternoon" },
+    { id: 3, name: "All Day" },
+  ];
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
 
@@ -66,11 +71,9 @@ const ConferencingBookingForm = ({ formData, setFormData }) => {
           data: {
             ...data,
             commencementDate: data.commencementDate.toISOString().split("T")[0],
-            commencementTime: data.commencementTime.toISOString().split("T")[0],
             conference_room: data.room,
           },
         },
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -97,17 +100,17 @@ const ConferencingBookingForm = ({ formData, setFormData }) => {
         validationSchema={schema}
         onSubmit={postData}
         initialValues={{
-          commencementDate: today,
-          commencementTime: 1,
+          commencementDate: formData.commencementDate,
+          commencementTime: formData.commencementTime,
           room:
             formData.room === null
-              ? conferenceRooms.length > 0
-                ? conferenceRooms[conferenceRooms.length - 1].id
+              ? rooms.length > 0
+                ? rooms[rooms.length - 1].id
                 : formData.room
               : 1,
-          participants: 1,
-          numberOfDays: 0,
-          specialRequest: "None",
+          participants: formData.participants,
+          numberOfDays: formData.numberOfDays,
+          specialRequest: formData.specialRequest,
         }}
       >
         {({
@@ -153,10 +156,10 @@ const ConferencingBookingForm = ({ formData, setFormData }) => {
                   onChange={handleChange}
                 >
                   <option key={1} value={"Morning"}>
-                    Morning{" "}
+                    Morning
                   </option>
                   <option key={2} value={"Afternoon"}>
-                    Afternoon{" "}
+                    Afternoon
                   </option>
                   <option key={3} value={"All Day"}>
                     All Day

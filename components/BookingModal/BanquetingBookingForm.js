@@ -16,8 +16,11 @@ import { toast } from "react-toastify";
 import useGlobalContext from "../../hooks/useGlobalContext";
 
 const schema = yup.object().shape({
-  commencementDate: yup.date().required("This field is required"),
-  commencementTime: yup.date().required("This field is required"),
+  commencementDate: yup
+    .date()
+    .required("This field is required")
+    .min(new Date(), "Departure Date must be from today onwards"),
+  commencementTime: yup.string().required("This field is required"),
   room: yup.number().required("This field is required"),
   participants: yup.number().required("This field is required"),
   specialRequest: yup.string().required("This field is required"),
@@ -95,16 +98,16 @@ const BanquetingBookingForm = ({ formData, setFormData }) => {
         validationSchema={schema}
         onSubmit={postData}
         initialValues={{
-          commencementDate: today,
-          commencementTime: 1,
+          commencementDate: formData.commencementDate,
+          commencementTime: formData.commencementTime,
           room:
             formData.room === null
-              ? banquetRooms.length > 0
-                ? banquetRooms[banquetRooms.length - 1].id
+              ? rooms.length > 0
+                ? rooms[rooms.length - 1].id
                 : formData.room
               : 1,
-          participants: 1,
-          specialRequest: "None",
+          participants: formData.participants,
+          specialRequest: formData.specialRequest,
         }}
       >
         {({

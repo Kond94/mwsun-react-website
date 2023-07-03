@@ -5,6 +5,7 @@ import "/public/scss/main.scss";
 import "react-modal-video/scss/modal-video.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { GoogleAnalytics, event } from "nextjs-google-analytics";
 

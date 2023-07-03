@@ -1,5 +1,6 @@
-import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
+
+import NextImage from "next/image";
 import { slugify } from "../../utils";
 import { useRouter } from "next/router";
 
@@ -11,20 +12,23 @@ const RoomCard = ({ room }) => {
       <div
         className='room__item p-relative fix mb-30'
         style={{ cursor: "pointer" }}
-        onClick={() => router.push("/Accommodation/" + slugify(room.title))}
+        onClick={() => router.push("/Accommodation/" + slugify(room.name))}
       >
         <div className='room__thumb mb-25'>
-          <img
+          <NextImage
             src={room.displayPhoto.url}
             alt='team'
-            style={{ width: "100%" }}
+            width={"100%"}
+            height={"70%"}
+            layout='responsive'
+            blurDataURL='/img/placeholder.png'
           />
           <div
             className='room__info  pt-10 pb-20'
             style={{ paddingRight: 25, cursor: "pointer" }}
-            onClick={() => router.push("/Accommodation/" + slugify(room.title))}
+            onClick={() => router.push("/Accommodation/" + slugify(room.name))}
           >
-            <h5 style={{ color: "#fff" }}>{room.title}</h5>
+            <h5 style={{ color: "#fff" }}>{room.name}</h5>
             <span style={{ color: "white" }} className='mr-20'>
               {room.description}
             </span>
@@ -32,7 +36,7 @@ const RoomCard = ({ room }) => {
         </div>
         <div className='room__content pt-10 pb-30'>
           <h3 style={{ margin: 5 }}>
-            {room.title}
+            {room.name}
 
             <p style={{ color: "white" }}>
               Mk{room.price.toLocaleString("en-US")}

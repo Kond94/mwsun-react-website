@@ -58,7 +58,7 @@ export default function Banqueting(props) {
             <div className={classes.description}>
               <p>
                 {slug === "Banqueting"
-                  ? "Every room in Malawi Sun Hotel has its own unique character and allure. Find yourself in a modern space all while feeling that familiar sense of home."
+                  ? "If you are planning a special occasion, such as a wedding, anniversary or birthday, look no further than our hotel banquet rooms. Our banquet rooms are elegant, comfortable and affordable, with beautiful décor and lighting. You can also enjoy our delicious cuisine, customized menus and attentive service. Our staff will help you with every aspect of your event, from planning to execution. Whether you want a intimate gathering or a grand celebration, our hotel banquet rooms will make your occasion memorable. Call us today and book your banquet room!"
                   : room.description}
               </p>
             </div>
@@ -77,14 +77,17 @@ export default function Banqueting(props) {
                 <br />
                 <br />
                 <GridItem>
-                  <GridContainer direction='row'>
+                  <GridContainer
+                    direction='column'
+                    style={{ textAlign: "center" }}
+                  >
                     {addons.map((addon) => {
                       const Icon = useIcons(addon.icon);
                       return (
-                        <div style={{ margin: 5 }} key={addon.id}>
+                        <GridItem style={{ margin: 5 }} key={addon.id}>
                           {Icon && <Icon color='primary' />}
                           <p>{addon.name}</p>
-                        </div>
+                        </GridItem>
                       );
                     })}
                   </GridContainer>

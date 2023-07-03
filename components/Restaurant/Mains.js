@@ -7,9 +7,9 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Backdrop from "@material-ui/core/Backdrop";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Fade from "@material-ui/core/Fade";
-import Image from "next/image";
 import Input from "./Input";
 import Modal from "@material-ui/core/Modal";
+import NextImage from "next/image";
 
 const useModalStyles = makeStyles((theme) => ({
   modal: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Mains({ meals }) {
+export default function Mains({ meals, type }) {
   const [modalMeal, setModalMeal] = useState(null);
   const classes = useStyles();
   const modalClasses = useModalStyles();
@@ -65,10 +65,11 @@ export default function Mains({ meals }) {
                   <h2 id='transition-modal-title'>
                     {modalMeal !== null ? modalMeal.name : ""}
                   </h2>
-                  <Image
-                    src={modalMeal !== null ? modalMeal.displayPhoto.url : ""}
+                  <NextImage
+                    src={modalMeal !== null ? modalMeal?.displayPhoto?.url : ""}
                     width={800}
                     height={800}
+                    blurDataURL='/img/placeholder.png'
                   />
                   <p id='transition-modal-description'>
                     {modalMeal !== null ? modalMeal.description : ""}
@@ -112,7 +113,7 @@ export default function Mains({ meals }) {
                       >
                         {meal.name}
                       </h5>
-                      <Input type='mains' name={meal.name} index={meal.name} />
+                      <Input type={type} name={meal.name} index={meal.id} />
                       <strong className='mains-price'>
                         Mk {meal.price.toLocaleString("en-us")}
                       </strong>

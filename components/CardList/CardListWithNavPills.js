@@ -14,13 +14,13 @@ import React from "react";
 const CardListWithNavPills = ({ itemTypes, items }) => {
   const renderIcon = (itemType) => {
     switch (itemType) {
-      case "standard":
+      case "Standard":
         return <AirlineSeatFlat />;
-      case "executive":
+      case "Executive":
         return <AirlineSeatFlatAngled />;
-      case "suites":
+      case "Suites":
         return <House />;
-      case "other":
+      case "Deluxe":
         return <MoreHoriz />;
       default:
         return <AirlineSeatFlat />;
@@ -38,9 +38,7 @@ const CardListWithNavPills = ({ itemTypes, items }) => {
             tabContent: (
               <GridContainer direction='row'>
                 {items
-                  .filter(
-                    (item) => item.name.toLowerCase().indexOf(itemType) !== -1
-                  )
+                  .filter((item) => item.type === itemType)
                   .map((item) => (
                     <CardListItem item={item} />
                   ))}

@@ -10,6 +10,7 @@ const AllContext = ({ children }) => {
   const [banquetAddOns, setBanquetAddOns] = useState([]);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
+  const [items, setItems] = useState([]);
   const [conferenceRooms, setConferenceRooms] = useState([]);
   const [conferenceAddOns, setConferenceAddOns] = useState([]);
   const [meals, setMeals] = useState([]);
@@ -18,46 +19,34 @@ const AllContext = ({ children }) => {
   const [form, setForm] = useState(null);
   const [formState, setFormState] = useState(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [showRestaurantModal, setShowRestaurantModal] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   // sticky
   useEffect(() => {
+    const fetchData = async () => {
+      setIsFetching(true);
+      const results = await Promise.all([
+        fetchAPI("/rooms", { populate: ["deep"] }),
+        fetchAPI("/promotion-rooms", { populate: ["deep"] }),
+        fetchAPI("/packages", { populate: ["deep"] }),
+        fetchAPI("/conference-rooms", { populate: ["deep"] }),
+        fetchAPI("/conference-addons", { populate: ["deep"] }),
+        fetchAPI("/banquet-rooms", { populate: ["deep"] }),
+        fetchAPI("/banquet-addons", { populate: ["deep"] }),
+        fetchAPI("/meals", { populate: ["deep"] }),
+      ]);
+      setRooms(results[0].data);
+      setPromotionRooms(results[1].data);
+      setPackages(results[2].data);
+      setConferenceRooms(results[3].data);
+      setConferenceAddOns(results[4].data);
+      setBanquetRooms(results[5].data);
+      setBanquetAddOns(results[6].data);
+      setMeals(results[7].data);
+
+      setIsFetching(false);
+    };
     try {
-      const fetchData = async () => {
-        const promotionRoomsResult = await Promise.all([
-          fetchAPI("/promotion-rooms", { populate: ["deep"] }),
-        ]);
-
-        const banquetRoomsResult = await Promise.all([
-          fetchAPI("/banquet-rooms", { populate: ["deep"] }),
-        ]);
-        const banquetAddOnsResult = await Promise.all([
-          fetchAPI("/banquet-addons", { populate: ["deep"] }),
-        ]);
-        const conferenceRoomsResult = await Promise.all([
-          fetchAPI("/conference-rooms", { populate: ["deep"] }),
-        ]);
-        const conferenceAddOnsResult = await Promise.all([
-          fetchAPI("/conference-addons", { populate: ["deep"] }),
-        ]);
-        const mealsResult = await Promise.all([
-          fetchAPI("/meals", { populate: ["deep"] }),
-        ]);
-        const packagesResult = await Promise.all([
-          fetchAPI("/packages", { populate: ["deep"] }),
-        ]);
-        const roomsResult = await Promise.all([
-          fetchAPI("/rooms", { populate: ["deep"] }),
-        ]);
-
-        setPromotionRooms(promotionRoomsResult[0].data);
-        setBanquetRooms(banquetRoomsResult[0].data);
-        setBanquetAddOns(banquetAddOnsResult[0].data);
-        setConferenceRooms(conferenceRoomsResult[0].data);
-        setConferenceAddOns(conferenceAddOnsResult[0].data);
-        setMeals(mealsResult[0].data);
-        setPackages(packagesResult[0].data);
-        setRooms(roomsResult[0].data);
-      };
-
       fetchData();
     } catch (error) {
       console.log(error);
@@ -71,13 +60,19 @@ const AllContext = ({ children }) => {
     conferenceAddOns,
     meals,
     packages,
+    items,
+    setItems,
     rooms,
     showBookingModal,
+    showRestaurantModal,
     form,
     formState,
+    isFetching,
+    setIsFetching,
     setForm,
     setFormState,
     setShowBookingModal,
+    setShowRestaurantModal,
     isVideoOpen,
     setIsVideoOpen,
   };

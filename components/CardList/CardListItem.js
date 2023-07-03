@@ -1,16 +1,9 @@
-import {
-  CardContent,
-  CardMedia,
-  Chip,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { CardContent, Chip, Paper, Typography } from "@material-ui/core";
 
 import Button from "/components/CustomButtons/Button.js";
 import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
-import Image from "next/image";
-import Link from "next/link";
+import NextImage from "next/image";
 import React from "react";
 import { slugify } from "../../utils";
 import useGlobalContext from "../../hooks/useGlobalContext";
@@ -39,19 +32,21 @@ const CardListItem = ({ item, slug }) => {
       <GridContainer>
         <GridItem xs={12} sm={6} lg={6}>
           <div
-            onClick={() => router.push("/" + path + "/" + slugify(item.title))}
+            onClick={() => router.push("/" + path + "/" + slugify(item.name))}
             style={{ position: "relative", cursor: "pointer" }}
           >
-            <Image
+            <NextImage
               className='grow'
               src={item.displayPhoto.url}
-              title={item.title}
+              title={item.name}
               width={"100vh"}
-              height={"100vh"}
+              height={"80vh"}
+              layout='responsive'
               style={{
                 boxShadow: "20px 20px 20px #e2e2e2",
               }}
               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              blurDataURL='/img/placeholder.png'
             />
             <Paper
               style={{
@@ -71,12 +66,12 @@ const CardListItem = ({ item, slug }) => {
             <div>
               <div
                 onClick={() =>
-                  router.push("/" + path + "/" + slugify(item.title))
+                  router.push("/" + path + "/" + slugify(item.name))
                 }
                 style={{ position: "relative", cursor: "pointer" }}
               >
                 <Typography gutterBottom variant='h5' component='h2'>
-                  The {item.title}
+                  The {item.name}
                 </Typography>
                 <Typography variant='body2' color='textSecondary' component='p'>
                   {item.description
@@ -92,7 +87,7 @@ const CardListItem = ({ item, slug }) => {
               </div>
               <Chip
                 onClick={() =>
-                  router.push("/" + path + "/" + slugify(item.title))
+                  router.push("/" + path + "/" + slugify(item.name))
                 }
                 color='default'
                 label={"see more"}

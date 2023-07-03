@@ -45,8 +45,8 @@ export default function HeaderLinks(props) {
           dropdownList={
             rooms.length > 0
               ? rooms[0].data.map((room) => (
-                  <Link href={"/accommodation/" + slugify(room.title)}>
-                    <a className={classes.dropdownLink}>{room.title}</a>
+                  <Link href={"/accommodation/" + slugify(room.name)}>
+                    <a className={classes.dropdownLink}>{room.name</a>
                   </Link>
                 ))
               : [<></>]
@@ -60,6 +60,7 @@ export default function HeaderLinks(props) {
             color='transparent'
             target='_blank'
             className={classes.navLink}
+            style={{ fontSize: 14 }}
           >
             Home
           </Button>
@@ -67,6 +68,7 @@ export default function HeaderLinks(props) {
             onClick={() => router.push("/Accommodation")}
             color='transparent'
             target='_blank'
+            style={{ fontSize: 14 }}
             className={classes.navLink}
           >
             Accommodation
@@ -75,6 +77,7 @@ export default function HeaderLinks(props) {
         <ListItem className={classes.listItem}>
           <Button
             onClick={() => router.push("/Conferencing")}
+            style={{ fontSize: 14 }}
             color='transparent'
             target='_blank'
             className={classes.navLink}
@@ -86,6 +89,7 @@ export default function HeaderLinks(props) {
           <Button
             onClick={() => router.push("/Banqueting")}
             color='transparent'
+            style={{ fontSize: 14 }}
             target='_blank'
             className={classes.navLink}
           >
@@ -95,6 +99,7 @@ export default function HeaderLinks(props) {
         <ListItem className={classes.listItem}>
           <Button
             onClick={() => router.push("/Catering")}
+            style={{ fontSize: 14 }}
             color='transparent'
             target='_blank'
             className={classes.navLink}
@@ -119,7 +124,7 @@ export default function HeaderLinks(props) {
               setShowBookingModal(true);
             }}
             color='warning'
-            style={{ color: "#fff" }}
+            style={{ fontSize: 14, color: "#fff" }}
             // className={classes.navLink}
           >
             BOOK NOW

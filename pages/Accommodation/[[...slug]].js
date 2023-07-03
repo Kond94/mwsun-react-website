@@ -25,7 +25,7 @@ export default function Accommodation(props) {
     useGlobalContext();
 
   const { room, allRooms = [], slug, ...rest } = props;
-  const roomTypes = ["standard", "executive", "suites", "other"];
+  const roomTypes = ["Standard", "Executive", "Suites", "Deluxe"];
   return (
     <div>
       <HeadMeta metaTitle={"Comfortable & Affordable Accommodation"} />
@@ -50,7 +50,7 @@ export default function Accommodation(props) {
                 <div className={classes.name}>
                   <h3 className={classes.title}>
                     Accommodation
-                    {slug === "Accommodation" ? "" : " | " + room.title}
+                    {slug === "Accommodation" ? "" : " | " + room.name}
                   </h3>
                 </div>
               </div>
@@ -60,7 +60,9 @@ export default function Accommodation(props) {
             <p>
               {slug === "Accommodation"
                 ? `Every room in Malawi Sun Hotel has its own unique character and allure. 
-                   Find yourself in a modern space all while feeling that familiar sense of home.`
+                   F Our rooms are equipped with modern amenities, such as Wi-Fi, flat-screen TVs, air conditioning and more. 
+                   You can also take advantage of our complimentary breakfast, fitness center and 24/7 customer service. Whether you are traveling for business or pleasure, our hotel rooms will make you feel at home. 
+                   Book your room today and experience the difference!.`
                 : room.description}
             </p>
           </div>
@@ -88,14 +90,17 @@ export default function Accommodation(props) {
               <br />
               <br />
               <GridItem>
-                <GridContainer direction='row'>
+                <GridContainer
+                  direction='column'
+                  style={{ textAlign: "center" }}
+                >
                   {room.amenities.map((amenity) => {
                     const Icon = useIcons(amenity.icon);
                     return (
-                      <div style={{ margin: 5 }} key={amenity.id}>
+                      <GridItem style={{ margin: 5 }} key={amenity.id}>
                         {Icon && <Icon color='primary' />}
                         <p>{amenity.name}</p>
-                      </div>
+                      </GridItem>
                     );
                   })}
                 </GridContainer>
@@ -114,7 +119,7 @@ export default function Accommodation(props) {
                 <CardListWithNavPills
                   itemTypes={roomTypes}
                   items={allRooms.map((room) => {
-                    return { ...room, name: room.title };
+                    return { ...room, name: room.name };
                   })}
                 />
               </GridItem>
@@ -142,7 +147,7 @@ export async function getServerSideProps({ params }) {
     props: {
       room: {
         ...roomsResult[0].data.find(
-          (room) => slugify(room.title) == params.slug
+          (room) => slugify(room.name) == params.slug
         ),
       },
       allRooms: [...roomsResult[0].data],
