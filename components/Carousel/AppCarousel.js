@@ -15,6 +15,7 @@ import styles from "/styles/jss/nextjs-material-kit/pages/componentsSections/car
 const useStyles = makeStyles(styles);
 
 export default function AppCarousel({ images }) {
+  console.log(images);
   const classes = useStyles();
   const settings = {
     dots: true,

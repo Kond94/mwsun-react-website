@@ -90,7 +90,7 @@ const BookingModal = () => {
       open={showBookingModal}
       onClose={() => setShowBookingModal(false)}
       TransitionComponent={Transition}
-      transitionDuration={500}
+      transitionDuration={1000}
     >
       <DialogTitle
         id='customized-dialog-title'

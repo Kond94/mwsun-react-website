@@ -8,7 +8,8 @@ const nextConfig = {
       "localhost",
       "mwsun-strapi.onrender.com",
       "res.cloudinary.com",
-      "malawisunhotel.com.com",
+      "malawisunhotel.com",
+      "vercel.com/kond94/mwsun-react-website",
     ],
   },
 };
