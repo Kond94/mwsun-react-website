@@ -47,7 +47,7 @@ export default function Footer(props) {
             href='https://www.creative-tim.com?ref=njsmk-footer'
             className={aClasses}
             target='_blank'
-          >
+          > 
             Kondwerani Kamsesa
           </a>
         </div>
