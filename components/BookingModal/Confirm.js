@@ -12,13 +12,22 @@ function Detail({ title, data }) {
   );
 }
 
-function Confirm({ formData, setPreviousForm }) {
+function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
   const { rooms, conferenceRooms, banquetRooms, packages } = useGlobalContext();
   useLayoutEffect(() => {
+    setNextForm("confirm");
+
     switch (formData.bookingType) {
       case "Accommodation":
         setPreviousForm("Accommodation");
-
+        setFormData({
+          ...formData,
+          amount: Math.round(
+            Math.abs(
+              (formData.arrivalDate - formData.departureDate) / 86400000
+            ) * rooms.find((room) => room.id == formData.room).price
+          ),
+        });
         break;
       case "Conferencing":
         setPreviousForm("Conferencing");
@@ -67,6 +76,31 @@ function Confirm({ formData, setPreviousForm }) {
           />
           <Detail title='Adults' data={formData.adults} />
           <Detail title='Children' data={formData.children} />
+          <Detail
+            title='Nights'
+            data={Math.round(
+              Math.abs(
+                (formData.arrivalDate - formData.departureDate) / 86400000
+              )
+            )}
+          />
+          <Detail
+            title='Total Price'
+            data={Math.round(
+              Math.abs(
+                (formData.arrivalDate - formData.departureDate) / 86400000
+              ) * rooms.find((room) => room.id == formData.room).price
+            )}
+          />
+
+          {/* <Detail
+            title='Total Price'
+            data={
+              formData.room !== null
+                ? rooms.find((room) => room.id == formData.room).name
+                : ""
+            }
+          /> */}
         </>
       ) : (
         <></>

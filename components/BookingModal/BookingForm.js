@@ -1,6 +1,4 @@
-import * as yup from "yup";
-
-import { Box, Button, Dialog, Paper, Zoom } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 
 import AccommodationForm from "./AccommodationForm";
 import BanquetForm from "./BanquetForm";
@@ -9,6 +7,10 @@ import BookingType from "./BookingType";
 import ConferenceForm from "./ConferenceForm";
 import Confirm from "./Confirm";
 import PackageForm from "./PackageForm";
+import PayForm from "./PayForm";
+import React from "react";
+import Script from "next/script";
+import axios from "axios";
 import { fetchAPI } from "../../lib/api";
 import { toast } from "react-toastify";
 import useGlobalContext from "../../hooks/useGlobalContext";
@@ -22,7 +24,6 @@ function Form() {
   const [errors, setErrors] = useState(false);
   const today = new Date();
   const tomorrow = new Date(+today + 86400000);
-
   tomorrow.setDate(tomorrow.getDate() + 1);
   const [formData, setFormData] = useState({
     form: form === null ? "bookingType" : "bookerDetails",
@@ -43,6 +44,8 @@ function Form() {
 
     specialRequest: "None",
   });
+
+  const generateSession = async () => {};
 
   const conditionalComponent = () => {
     switch (formData.form) {
@@ -123,12 +126,26 @@ function Form() {
             />
           </Box>
         );
+      case "pay":
+        return (
+          <Box sx={{ m: 1 }}>
+            <PayForm
+              setNextForm={setNextForm}
+              formData={formData}
+              setFormData={setFormData}
+              setPreviousForm={setPreviousForm}
+            />
+          </Box>
+        );
       default:
         return <p>default</p>;
     }
   };
 
   const handleSubmit = async () => {
+    if (formData.form === "pay") {
+      setShowBookingModal(false);
+    }
     setErrors(false);
     switch (formData.form) {
       case "bookerDetails":
@@ -247,9 +264,10 @@ function Form() {
       try {
         const [bookingRes] = await Promise.all([
           fetchAPI("/" + bookingEndpoint, {}, options),
+          generateSession(),
         ]).then((response) => {
           setIsSubmitting(false);
-          setShowBookingModal(false);
+          setFormData({ ...formData, form: "pay" });
           notify();
         });
       } catch (error) {
@@ -261,10 +279,14 @@ function Form() {
     }
     setIsSubmitting(false);
   };
+
   return (
     <div style={{ textAlign: "center", margin: 20 }}>
+      <Script src='https://test-nbm.mtf.gateway.mastercard.com/static/checkout/checkout.min.js' />
+
       {conditionalComponent()}
       {errors && <p style={{ color: "red" }}>{errors}</p>}
+
       {formData.form !== "bookingType" && (
         <Button
           variant='contained'
@@ -285,7 +307,7 @@ function Form() {
         {isSubmitting && (
           <span className='spinner-border spinner-border-sm mr-1'></span>
         )}
-        {formData.form !== "confirm" ? "Next" : "Submit"}
+        {formData.form !== "pay" ? "Next" : "Close"}
       </Button>
     </div>
   );

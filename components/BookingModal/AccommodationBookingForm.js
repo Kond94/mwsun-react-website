@@ -51,6 +51,7 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
   };
 
   const { rooms } = useGlobalContext();
+  const today = new Date();
 
   return (
     <>

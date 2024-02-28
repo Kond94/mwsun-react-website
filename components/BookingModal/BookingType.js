@@ -20,7 +20,6 @@ function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
     padding: "1rem 0",
     marginBottom: 120,
   };
-
   useLayoutEffect(() => {
     setNextForm("bookerDetails");
     setPreviousForm("bookingType");

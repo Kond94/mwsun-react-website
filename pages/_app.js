@@ -6,6 +6,7 @@ import "react-modal-video/scss/modal-video.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
+import "react-credit-cards/es/styles-compiled.css";
 
 import { GoogleAnalytics, event } from "nextjs-google-analytics";
 
@@ -14,6 +15,12 @@ import App from "next/app";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import PageChange from "/components/PageChange/PageChange.js";
+import React from "react";
+import ReactDOM from "react-dom";
+import Router from "next/router";
+import Script from "next/script";
+import { ToastContainer } from "react-toastify";
+
 /*!
 
 =========================================================
@@ -31,10 +38,6 @@ import PageChange from "/components/PageChange/PageChange.js";
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import ReactDOM from "react-dom";
-import Router from "next/router";
-import { ToastContainer } from "react-toastify";
 
 export function reportWebVitals({ id, name, label, value }) {
   event(name, {
@@ -71,6 +74,8 @@ export default class MyApp extends App {
 
         <NextNProgress color='#007aff' height={10} />
         <AllContext>
+          <Script src='https://nbm.gateway.mastercard.com/checkout/version/49/checkout.js' />
+
           <Component {...pageProps} />
           <ToastContainer />
         </AllContext>
