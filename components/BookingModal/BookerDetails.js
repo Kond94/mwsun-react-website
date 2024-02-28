@@ -39,7 +39,7 @@ function BookerDetails({
 
   return (
     <div className='contact__modal'>
-      <h3 style={{ margin: 40 }}>Your Details</h3>
+      <h4>Personal Details</h4>
       <BookerDetailsForm
         schema={bookerDetailsSchema}
         formData={formData}

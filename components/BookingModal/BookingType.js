@@ -74,9 +74,7 @@ function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
 
   return (
     <Box sx={boxStyle}>
-      <p>Whats would you like to book?</p>
-      <br />
-      <br />
+      <p>What would you like to book?</p>
 
       <Grid container direction='column' alignItems='center'>
         <Grid item xs={12}>
@@ -85,6 +83,7 @@ function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
             color='primary'
             ref={anchorRef}
             aria-label='split button'
+            style={{ width: "100%" }}
           >
             <Button onClick={handleClick}>{options[selectedIndex]}</Button>
             <Button
@@ -105,6 +104,7 @@ function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
             role={undefined}
             transition
             disablePortal
+            style={{ zIndex: 1 }}
           >
             {({ TransitionProps, placement }) => (
               <Grow

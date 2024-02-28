@@ -15,7 +15,7 @@ const BanquetForm = ({
 
   return (
     <div className='contact__modal'>
-      <h3 style={{ margin: 40 }}>Booking Details</h3>
+      <h4>Details</h4>
 
       <BanquetingBookingForm formData={formData} setFormData={setFormData} />
     </div>

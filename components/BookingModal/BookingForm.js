@@ -289,9 +289,9 @@ function Form() {
 
       {formData.form !== "bookingType" && (
         <Button
-          variant='contained'
+          variant='outlined'
           onClick={() => setFormData({ ...formData, form: previousForm })}
-          style={{ margin: 10 }}
+          style={{ margin: 10, marginTop: 50, width: "100%" }}
         >
           Back
         </Button>
@@ -302,12 +302,15 @@ function Form() {
         variant='contained'
         type='submit'
         onClick={handleSubmit}
-        style={{ margin: 10 }}
+        style={{ margin: 10, width: "100%" }}
       >
-        {isSubmitting && (
+        {isSubmitting ? (
           <span className='spinner-border spinner-border-sm mr-1'></span>
+        ) : formData.form !== "pay" ? (
+          "Next"
+        ) : (
+          "Close"
         )}
-        {formData.form !== "pay" ? "Next" : "Close"}
       </Button>
     </div>
   );

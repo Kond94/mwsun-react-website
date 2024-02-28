@@ -86,18 +86,18 @@ const BookingModal = () => {
 
   return (
     <Dialog
-      fullScreen
+      // fullScreen
       open={showBookingModal}
       onClose={() => setShowBookingModal(false)}
       TransitionComponent={Transition}
       transitionDuration={1000}
+      style={{ width: "100%" }}
     >
       <DialogTitle
         id='customized-dialog-title'
         onClose={() => setShowBookingModal(false)}
-      >
-        Booking Form
-      </DialogTitle>
+      ></DialogTitle>
+      <h3 style={{ textAlign: "center" }}>Booking Form</h3>
       <DialogContent>
         <BookingForm bookingType={form} />
       </DialogContent>

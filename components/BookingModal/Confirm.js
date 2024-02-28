@@ -85,12 +85,17 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             )}
           />
           <Detail
-            title='Total Price'
-            data={Math.round(
-              Math.abs(
-                (formData.arrivalDate - formData.departureDate) / 86400000
-              ) * rooms.find((room) => room.id == formData.room).price
-            )}
+            title='Total Amount'
+            data={
+              "Mk " +
+              Math.round(
+                Math.abs(
+                  (formData.arrivalDate - formData.departureDate) / 86400000
+                ) * rooms.find((room) => room.id == formData.room).price
+              )
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
           />
 
           {/* <Detail

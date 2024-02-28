@@ -1,11 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useLayoutEffect } from "react";
 
 const PayForm = ({ formData, setFormData, setNextForm, setPreviousForm }) => {
+  const [loading, setLoading] = useState(false);
   useLayoutEffect(() => {
+    setLoading(true);
     if (formData.bookingType === "Accommodation") {
-      console.log("here", formData);
       axios
         .post("https://itec-mw-api.onrender.com/make-payment", {
           amount: formData.amount,
@@ -20,8 +22,12 @@ const PayForm = ({ formData, setFormData, setNextForm, setPreviousForm }) => {
             },
           });
           window.Checkout.showEmbeddedPage("#embed-target");
+          setLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
     }
 
     setPreviousForm("confirm");
@@ -30,6 +36,19 @@ const PayForm = ({ formData, setFormData, setNextForm, setPreviousForm }) => {
   return (
     <div className='contact__modal'>
       <h3 style={{ margin: 40 }}>Payment</h3>
+      <p>
+        Your booking has been made. If you would like to pay using your Debit or
+        Credit Card use the form below, if you would like to pay when checking
+        in you can go ahead and close this form
+      </p>
+      {loading ? (
+        <>
+          <span className='spinner-border spinner-border-sm mr-1'></span>
+          <p>Loading Payment Form</p>
+        </>
+      ) : (
+        <></>
+      )}
       <div id='embed-target'></div>
     </div>
   );

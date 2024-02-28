@@ -15,7 +15,7 @@ const ConferenceForm = ({
 
   return (
     <div className='contact__modal'>
-      <h3 style={{ margin: 40 }}>Booking Details</h3>
+      <h4>Details</h4>
 
       <ConferencingBookingForm formData={formData} setFormData={setFormData} />
     </div>

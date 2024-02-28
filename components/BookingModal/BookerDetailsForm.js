@@ -44,8 +44,9 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
           >
             <Form.Group
               className='mb-3 text-center'
-              style={{ width: "65%", margin: "auto" }}
+              style={{ width: "100%", margin: "auto" }}
             >
+              <Form.Label>Full Name</Form.Label>
               <Form.Control
                 className='text-center'
                 type='text'
@@ -63,8 +64,10 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
 
             <Form.Group
               className='mb-3'
-              style={{ width: "65%", margin: "auto" }}
+              style={{ width: "100%", margin: "auto" }}
             >
+              <Form.Label>Phone Number</Form.Label>
+
               <Form.Control
                 type='text'
                 className='text-center'
@@ -82,8 +85,10 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
 
             <Form.Group
               className='mb-3'
-              style={{ width: "65%", margin: "auto" }}
+              style={{ width: "100%", margin: "auto" }}
             >
+              <Form.Label>Email Address</Form.Label>
+
               <Form.Control
                 type='email'
                 className='text-center'
