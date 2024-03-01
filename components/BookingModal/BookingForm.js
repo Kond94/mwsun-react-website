@@ -282,7 +282,7 @@ function Form() {
 
   return (
     <div style={{ textAlign: "center", margin: 20 }}>
-      <Script src='https://test-nbm.mtf.gateway.mastercard.com/static/checkout/checkout.min.js' />
+      <Script src='https://nbm.gateway.mastercard.com/static/checkout/checkout.min.js' />
 
       {conditionalComponent()}
       {errors && <p style={{ color: "red" }}>{errors}</p>}

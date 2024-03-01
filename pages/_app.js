@@ -74,7 +74,7 @@ export default class MyApp extends App {
 
         <NextNProgress color='#007aff' height={10} />
         <AllContext>
-          <Script src='https://nbm.gateway.mastercard.com/checkout/version/49/checkout.js' />
+          <Script src='https://nbm.gateway.mastercard.com/static/checkout/checkout.min.js' />
 
           <Component {...pageProps} />
           <ToastContainer />
