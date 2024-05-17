@@ -118,6 +118,48 @@ export default function Home(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <FavoriteRooms promotionRooms={promotionRooms} />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span
+            style={{ color: "black", textAlign: "center", flex: 1 }}
+            className='mh-20'
+          >
+            In each of our rooms you will find:
+          </span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span
+            style={{ color: "black", textAlign: "center", flex: 1 }}
+            className='mh-20 mt-10'
+          >
+            🕕 A 24-hour front desk
+          </span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span
+            style={{ color: "black", textAlign: "center", flex: 1 }}
+            className='mh-20 mt-10'
+          >
+            🧹 Daily housekeeping included in the room rate
+          </span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span
+            style={{ color: "black", textAlign: "center", flex: 1 }}
+            className='mh-20 mt-10'
+          >
+            🛀🏼 Private bathroom for each unit
+          </span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span
+            style={{ color: "black", textAlign: "center", flex: 1 }}
+            className='mh-20 mt-10'
+          >
+            🤏🏼 If there is a minimum-stay requirement, it must be no more than 3
+            nights
+          </span>
+        </div>
+
         <Packages packages={packages} />
         <ClientCounter />
         <ContactCard />
