@@ -35,18 +35,15 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
         break;
       case "Banqueting":
         setPreviousForm("Banqueting");
-
+        break;
+      case "Package":
+        setPreviousForm("Package");
         break;
       default:
         break;
     }
   }, [formData.form]);
 
-  const boxStyle = {
-    margin: "1rem auto",
-    textAlign: "center",
-    padding: "1rem 0",
-  };
   const times = [
     { id: 1, name: "Morning" },
     { id: 2, name: "Afternoon" },
@@ -97,15 +94,6 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
           />
-
-          {/* <Detail
-            title='Total Price'
-            data={
-              formData.room !== null
-                ? rooms.find((room) => room.id == formData.room).name
-                : ""
-            }
-          /> */}
         </>
       ) : (
         <></>
@@ -173,7 +161,6 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             title='Date'
             data={formData.commencementDate.toDateString()}
           />
-          {console.log(formData)}
           <Detail
             title='Package'
             data={
@@ -181,6 +168,25 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
                 ? packages.find(
                     (packageOffer) => packageOffer.id == formData.package
                   ).name
+                : ""
+            }
+          />
+          <Detail
+            title='Price per participant'
+            data={
+              formData.package !== null
+                ? "$" +
+                  packages.find(
+                    (packageOffer) => packageOffer.id == formData.package
+                  ).price
+                : ""
+            }
+          />
+          <Detail
+            title='Total Price'
+            data={
+              formData.package !== null
+                ? "$" + formData.participants * formData.packagePrice
                 : ""
             }
           />

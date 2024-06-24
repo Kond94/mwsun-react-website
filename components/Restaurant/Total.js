@@ -15,7 +15,6 @@ export default function Total() {
 
   const totalPrice = Object.keys(items).reduce((acc, curr) => {
     const [group, item] = curr.split("-");
-    console.log(item);
 
     const amount = items[curr] * meals.find((meal) => meal.id == item).price;
     return acc + amount;

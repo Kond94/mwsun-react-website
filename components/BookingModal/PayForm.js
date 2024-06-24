@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useLayoutEffect } from "react";
 
-const PayForm = ({ formData, setFormData, setNextForm, setPreviousForm }) => {
+const PayForm = ({ formData, setPreviousForm }) => {
   const [loading, setLoading] = useState(false);
   useLayoutEffect(() => {
     setLoading(true);
@@ -15,7 +15,32 @@ const PayForm = ({ formData, setFormData, setNextForm, setPreviousForm }) => {
           description: formData.name + " Accommodation Booking",
         })
         .then((response) => {
-          console.log(response.data.session.id);
+          window.Checkout.configure({
+            session: {
+              id: response.data.session.id,
+            },
+          });
+          window.Checkout.showEmbeddedPage("#embed-target");
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+    }
+
+    if (formData.bookingType === "Package") {
+      axios
+        .post("https://itec-mw-api.onrender.com/make-payment", {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          bookingType: formData.bookingType,
+          amount: formData.totalPrice,
+          currency: "USD",
+          description: formData.name + "Package Booking",
+        })
+        .then((response) => {
           window.Checkout.configure({
             session: {
               id: response.data.session.id,

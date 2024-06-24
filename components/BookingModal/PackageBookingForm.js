@@ -14,6 +14,9 @@ const schema = yup.object().shape({
   package: yup.number().required("This field is required"),
   participants: yup.number().required("This field is required"),
   specialRequest: yup.string().required("This field is required"),
+  packageName: yup.string().required("This field is required"),
+  packagePrice: yup.number().required("This field is required"),
+  totalPrice: yup.number().required("This field is required"),
 });
 
 const DatePickerField = ({ ...props }) => {
@@ -53,6 +56,24 @@ const PackageBookingForm = ({ formData, setFormData }) => {
           : 1,
       participants: formData.participants,
       specialRequest: formData.specialRequest,
+      packageName:
+        formData.packages === null
+          ? packages.length > 0
+            ? packages[packages.length - 1].name
+            : formData.packageName
+          : packages.find((p) => p.id == 1).name,
+      packagePrice:
+        formData.packages === null
+          ? packages.length > 0
+            ? packages[packages.length - 1].price
+            : formData.packageName
+          : packages.find((p) => p.id == 1).price,
+      totalPrice:
+        formData.participants * formData.packages === null
+          ? packages.length > 0
+            ? packages[packages.length - 1].price
+            : formData.packageName
+          : packages.find((p) => p.id == 1).price,
     });
   }, [formData.form]);
 
@@ -63,6 +84,7 @@ const PackageBookingForm = ({ formData, setFormData }) => {
         validationSchema={schema}
         onSubmit={() => {}}
         initialValues={{
+          ...formData,
           commencementDate: formData.commencementDate,
           package:
             formData.packages === null
@@ -72,6 +94,19 @@ const PackageBookingForm = ({ formData, setFormData }) => {
               : 1,
           participants: formData.participants,
           specialRequest: formData.specialRequest,
+          packageName:
+            formData.packages === null
+              ? packages.length > 0
+                ? packages[packages.length - 1].name
+                : formData.packageName
+              : packages.find((p) => p.id == 1).name,
+          packagePrice:
+            formData.packages === null
+              ? packages.length > 0
+                ? packages[packages.length - 1].price
+                : formData.packageName
+              : packages.find((p) => p.id == 1).price,
+          totalPrice: formData.participants * formData.packagePrice,
         }}
       >
         {({

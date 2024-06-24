@@ -43,6 +43,42 @@ const DatePickerField = ({ ...props }) => {
 const ConferencingBookingForm = ({ formData, setFormData }) => {
   const { conferenceRooms, setFormState, formState } = useGlobalContext();
 
+  useLayoutEffect(() => {
+    setFormData({
+      ...formData,
+      commencementDate: formData.commencementDate,
+      room:
+        formData.room === null
+          ? rooms.length > 0
+            ? rooms[rooms.length - 1].id
+            : formData.room
+          : 1,
+      commencementTime: formData.commencementTime,
+      specialRequest: formData.specialRequest,
+      participants: formData.participants,
+
+      conferenceRoomName:
+        formData.conferenceRooms === null
+          ? conferenceRooms.length > 0
+            ? conferenceRooms[conferenceRooms.length - 1].name
+            : formData.packageName
+          : conferenceRooms.find((p) => p.id == 1).name,
+      packagePrice:
+        formData.conferenceRooms === null
+          ? conferenceRooms.length > 0
+            ? conferenceRooms[conferenceRooms.length - 1].price
+            : formData.packageName
+          : conferenceRooms.find((p) => p.id == 1).price,
+      totalPrice:
+        formData.participants * formData.conferenceRooms === null
+          ? conferenceRooms.length > 0
+            ? conferenceRooms[conferenceRooms.length - 1].price
+            : formData.packageName
+          : conferenceRooms.find((p) => p.id == 1).price,
+    });
+  }, [formData.form]);
+
+
   return (
     <>
       <Formik

@@ -12,7 +12,7 @@ import Popper from "@material-ui/core/Popper";
 import React from "react";
 import { useLayoutEffect } from "react";
 
-const options = ["Accommodation", "Conferencing", "Banqueting", "Package"];
+const options = ["Accommodation", "Package"];
 function BookingType({ formData, setFormData, setNextForm, setPreviousForm }) {
   const boxStyle = {
     margin: "1rem auto",

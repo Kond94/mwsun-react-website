@@ -18,13 +18,14 @@ import { useState } from "react";
 
 function Form() {
   const [nextForm, setNextForm] = useState("bookerDetails");
-  const { form, rooms, setShowBookingModal } = useGlobalContext();
+  const { form, rooms, setShowBookingModal, packages } = useGlobalContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previousForm, setPreviousForm] = useState("bookingType");
   const [errors, setErrors] = useState(false);
   const today = new Date();
   const tomorrow = new Date(+today + 86400000);
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  // tomorrow.setDate(tomorrow.getDate() + 1);
+
   const [formData, setFormData] = useState({
     form: form === null ? "bookingType" : "bookerDetails",
     bookingType: form !== null ? form : "Accommodation",
@@ -36,16 +37,12 @@ function Form() {
     departureDate: tomorrow,
     children: 0,
     adults: 1,
-
     commencementDate: today,
     commencementTime: 1,
     participants: 1,
     numberOfDays: 1,
-
     specialRequest: "None",
   });
-
-  const generateSession = async () => {};
 
   const conditionalComponent = () => {
     switch (formData.form) {
@@ -181,6 +178,7 @@ function Form() {
         email: formData.email,
         phone: formData.phone,
         specialRequest: formData.specialRequest,
+        bookingType: formData.bookingType,
       };
 
       let bookingEndpoint = "";
@@ -213,6 +211,7 @@ function Form() {
             ).name,
             participants: formData.participants,
             numberOfDays: formData.numberOfDays,
+            conferenceRoomName: con,
             conference_addons: [],
           };
           bookingEndpoint = "conference-bookings";
@@ -236,9 +235,14 @@ function Form() {
         case "Package":
           data = {
             ...data,
-            package: formData.room,
+            package: formData.package,
             date: formData.commencementDate,
             participants: formData.participants,
+            packageName: packages.find((p) => p.id == formData.package).name,
+            packagePrice: packages.find((p) => p.id == formData.package).price,
+            totalPrice:
+              formData.participants *
+              packages.find((p) => p.id == formData.package).price,
           };
           bookingEndpoint = "package-bookings";
 
@@ -264,7 +268,6 @@ function Form() {
       try {
         const [bookingRes] = await Promise.all([
           fetchAPI("/" + bookingEndpoint, {}, options),
-          generateSession(),
         ]).then((response) => {
           setIsSubmitting(false);
           setFormData({ ...formData, form: "pay" });
@@ -282,7 +285,12 @@ function Form() {
 
   return (
     <div style={{ textAlign: "center", margin: 20 }}>
-      <Script src='https://nbm.gateway.mastercard.com/static/checkout/checkout.min.js' />
+      <Script
+        src='https://nbm.gateway.mastercard.com/static/checkout/checkout.min.js'
+        complete={() => {
+          console.log("Done");
+        }}
+      />
 
       {conditionalComponent()}
       {errors && <p style={{ color: "red" }}>{errors}</p>}
