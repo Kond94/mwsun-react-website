@@ -173,12 +173,14 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             title='Date'
             data={formData.commencementDate.toDateString()}
           />
-
+          {console.log(formData)}
           <Detail
             title='Package'
             data={
-              formData.room !== null
-                ? packages.find((room) => room.id == formData.room).name
+              formData.package !== null
+                ? packages.find(
+                    (packageOffer) => packageOffer.id == formData.package
+                  ).name
                 : ""
             }
           />

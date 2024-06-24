@@ -5,13 +5,13 @@ import { ErrorMessage, Formik, useField, useFormikContext } from "formik";
 import Col from "react-bootstrap/Col";
 import DatePicker from "react-datepicker";
 import Form from "react-bootstrap/Form";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import Row from "react-bootstrap/Row";
 import useGlobalContext from "../../hooks/useGlobalContext";
 
 const schema = yup.object().shape({
   commencementDate: yup.date().required("This field is required"),
-  room: yup.number().required("This field is required"),
+  package: yup.number().required("This field is required"),
   participants: yup.number().required("This field is required"),
   specialRequest: yup.string().required("This field is required"),
 });
@@ -40,6 +40,21 @@ const DatePickerField = ({ ...props }) => {
 };
 const PackageBookingForm = ({ formData, setFormData }) => {
   const { packages } = useGlobalContext();
+
+  useLayoutEffect(() => {
+    setFormData({
+      ...formData,
+      commencementDate: formData.commencementDate,
+      package:
+        formData.packages === null
+          ? packages.length > 0
+            ? packages[packages.length - 1].id
+            : formData.package
+          : 1,
+      participants: formData.participants,
+      specialRequest: formData.specialRequest,
+    });
+  }, [formData.form]);
 
   return (
     <>
@@ -91,22 +106,26 @@ const PackageBookingForm = ({ formData, setFormData }) => {
                 </ErrorMessage>
               </Form.Group>
             </Row>
-            <Form.Group as={Col} controlId='room'>
+            <Form.Group as={Col} controlId='package'>
               <Form.Label>Package</Form.Label>
               <Form.Select
-                id='room'
-                isValid={touched.room && !errors.room}
-                value={values.room}
-                name='room'
+                id='package'
+                isValid={touched.package && !errors.package}
+                value={values.package}
+                name='package'
                 onChange={handleChange}
               >
-                {packages.map((room) => (
-                  <option key={room.id.toString()} value={room.id}>
-                    {room.name} (Mk{room.price.toLocaleString("en-US")})
+                {packages.map((packageOffer) => (
+                  <option
+                    key={packageOffer.id.toString()}
+                    value={packageOffer.id}
+                  >
+                    {packageOffer.name} (Mk
+                    {packageOffer.price.toLocaleString("en-US")})
                   </option>
                 ))}
               </Form.Select>
-              <ErrorMessage name='room'>
+              <ErrorMessage name='package'>
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>
