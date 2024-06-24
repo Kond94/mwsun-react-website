@@ -148,7 +148,7 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Children</Form.Label>
+                <Form.Label>Children (39,500 each)</Form.Label>
                 <Form.Control
                   type='number'
                   name='children'

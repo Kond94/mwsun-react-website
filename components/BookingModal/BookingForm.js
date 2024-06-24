@@ -179,6 +179,7 @@ function Form() {
         phone: formData.phone,
         specialRequest: formData.specialRequest,
         bookingType: formData.bookingType,
+        ...formData,
       };
 
       let bookingEndpoint = "";

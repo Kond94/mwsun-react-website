@@ -22,11 +22,34 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
         setPreviousForm("Accommodation");
         setFormData({
           ...formData,
-          amount: Math.round(
-            Math.abs(
-              (formData.arrivalDate - formData.departureDate) / 86400000
-            ) * rooms.find((room) => room.id == formData.room).price
-          ),
+          amount:
+            Math.round(
+              Math.abs(
+                (formData.arrivalDate - formData.departureDate) / 86400000
+              ) * rooms.find((room) => room.id == formData.room).price
+            ) *
+              formData.adults +
+            Math.round(
+              Math.abs(
+                (formData.arrivalDate - formData.departureDate) / 86400000
+              ) * 39500
+            ) *
+              formData.children,
+          totalPrice:
+            Math.round(
+              Math.abs(
+                (formData.arrivalDate - formData.departureDate) / 86400000
+              ) * rooms.find((room) => room.id == formData.room).price
+            ) *
+              formData.adults +
+            Math.round(
+              Math.abs(
+                (formData.arrivalDate - formData.departureDate) / 86400000
+              ) * 39500
+            ) *
+              formData.children,
+          roomName: rooms.find((r) => r.id == formData.room).name,
+          roomPrice: rooms.find((r) => r.id == formData.room).price,
         });
         break;
       case "Conferencing":
@@ -58,11 +81,23 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
       <Detail title='Phone' data={formData.phone} />
       {formData.bookingType === "Accommodation" ? (
         <>
+          {console.log(formData)}
           <Detail
             title='Room'
             data={
               formData.room !== null
                 ? rooms.find((room) => room.id == formData.room).name
+                : ""
+            }
+          />
+          <Detail
+            title='Price'
+            data={
+              "Mk " + formData.room !== null
+                ? rooms
+                    .find((room) => room.id == formData.room)
+                    .price.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 : ""
             }
           />
@@ -72,7 +107,7 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             data={formData.departureDate.toDateString()}
           />
           <Detail title='Adults' data={formData.adults} />
-          <Detail title='Children' data={formData.children} />
+          <Detail title='Children (39,500 each)' data={formData.children} />
           <Detail
             title='Nights'
             data={Math.round(
@@ -85,10 +120,19 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             title='Total Amount'
             data={
               "Mk " +
-              Math.round(
-                Math.abs(
-                  (formData.arrivalDate - formData.departureDate) / 86400000
-                ) * rooms.find((room) => room.id == formData.room).price
+              (
+                Math.round(
+                  Math.abs(
+                    (formData.arrivalDate - formData.departureDate) / 86400000
+                  ) * rooms.find((room) => room.id == formData.room).price
+                ) *
+                  formData.adults +
+                Math.round(
+                  Math.abs(
+                    (formData.arrivalDate - formData.departureDate) / 86400000
+                  ) * 39500
+                ) *
+                  formData.children
               )
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
