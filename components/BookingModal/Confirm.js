@@ -81,7 +81,6 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
       <Detail title='Phone' data={formData.phone} />
       {formData.bookingType === "Accommodation" ? (
         <>
-          {console.log(formData)}
           <Detail
             title='Room'
             data={

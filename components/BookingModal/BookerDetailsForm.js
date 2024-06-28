@@ -1,7 +1,8 @@
 import * as yup from "yup";
 
 import { ErrorMessage, Formik } from "formik";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import React from "react";
@@ -34,6 +35,7 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
           isValid,
           errors,
           handleBlur,
+          setFieldValue,
         }) => (
           <Form
             onSubmit={handleSubmit}
@@ -67,8 +69,16 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
               style={{ width: "100%", margin: "auto" }}
             >
               <Form.Label>Phone Number</Form.Label>
-
-              <Form.Control
+              <PhoneInput
+                placeholder='Enter phone number'
+                value={values.phone}
+                onChange={(text) => {
+                  setFormData({ ...formData, phone: text });
+                }}
+                defaultCountry='MW'
+                onBlur={() => {}}
+              />
+              {/* <Form.Control
                 type='text'
                 className='text-center'
                 name='phone'
@@ -77,7 +87,7 @@ const BookerDetailsForm = ({ formData, setFormData }) => {
                 isValid={touched.phone && !errors.phone}
                 placeholder='Phone Number'
                 style={{ textAlign: "left" }}
-              />
+              /> */}
               <ErrorMessage name='phone'>
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>

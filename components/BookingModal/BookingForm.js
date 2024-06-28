@@ -267,13 +267,39 @@ function Form() {
       };
 
       try {
-        const [bookingRes] = await Promise.all([
-          fetchAPI("/" + bookingEndpoint, {}, options),
-        ]).then((response) => {
-          setIsSubmitting(false);
-          setFormData({ ...formData, form: "pay" });
-          notify();
+        fetchAPI("/" + bookingEndpoint, {}, options).then((response) => {
+          axios
+            .post("https://itec-mw-api.onrender.com/sendSMS", {
+              phone: formData.phone,
+              name: formData.name,
+              email: formData.email,
+              bookingType: formData.bookingType,
+              bookingDetail:
+                formData.bookingType == "Accommodation"
+                  ? rooms.find((r) => r.id == data.room).name
+                  : data.packageName,
+              adults:
+                formData.bookingType == "Accommodation" ? data.adults : false,
+              children:
+                formData.bookingType == "Accommodation" ? data.children : false,
+              participants:
+                formData.bookingType == "Package" ? data.participants : false,
+              quotedAmount: data.totalPrice,
+            })
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         });
+
+        setFormData({ ...formData, form: "pay" });
+        notify();
+        setIsSubmitting(false);
+    
+
+       
       } catch (error) {
         setIsSubmitting(false);
         console.log(error);
