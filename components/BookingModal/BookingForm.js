@@ -281,10 +281,16 @@ function Form() {
               adults:
                 formData.bookingType == "Accommodation" ? data.adults : false,
               children:
-                formData.bookingType == "Accommodation" ? data.children : false,
+                formData.bookingType == "Accommodation"
+                  ? data.children != ""
+                    ? data.children
+                    : data.children != 0
+                    ? data.children
+                    : false
+                  : false,
               participants:
                 formData.bookingType == "Package" ? data.participants : false,
-              quotedAmount: data.totalPrice,
+              quotedAmount: "Mk: " + data.totalPrice.toLocaleString("en-US"),
             })
             .then((response) => {
               console.log(response);
