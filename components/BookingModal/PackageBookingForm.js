@@ -33,7 +33,7 @@ const DatePickerField = ({ ...props }) => {
       }}
       customInput={
         <Form.Control
-          type='text'
+          type="text"
           value={(field.value && new Date(field.value)) || null}
           isValid={props.touched[props.name] && !props.errors[props.name]}
         />
@@ -127,27 +127,27 @@ const PackageBookingForm = ({ formData, setFormData }) => {
             }}
             onBlur={handleBlur}
           >
-            <Row className='mb-3'>
+            <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Date</Form.Label>
                 <br />
                 <DatePickerField
-                  name='commencementDate'
+                  name="commencementDate"
                   touched={touched}
                   errors={errors}
                 />
-                <ErrorMessage name='commencementDate'>
+                <ErrorMessage name="commencementDate">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
-            <Form.Group as={Col} controlId='package'>
+            <Form.Group as={Col} controlId="package">
               <Form.Label>Package</Form.Label>
               <Form.Select
-                id='package'
+                id="package"
                 isValid={touched.package && !errors.package}
                 value={values.package}
-                name='package'
+                name="package"
                 onChange={handleChange}
               >
                 {packages.map((packageOffer) => (
@@ -155,43 +155,43 @@ const PackageBookingForm = ({ formData, setFormData }) => {
                     key={packageOffer.id.toString()}
                     value={packageOffer.id}
                   >
-                    {packageOffer.name} (Mk
+                    {packageOffer.name} ($
                     {packageOffer.price.toLocaleString("en-US")})
                   </option>
                 ))}
               </Form.Select>
-              <ErrorMessage name='package'>
+              <ErrorMessage name="package">
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>
             <br />
-            <Row className='mb-4'>
+            <Row className="mb-4">
               <Form.Group as={Col}>
                 <Form.Label>Participants (Number)</Form.Label>
                 <Form.Control
-                  type='number'
-                  name='participants'
+                  type="number"
+                  name="participants"
                   value={values.participants}
                   onChange={handleChange}
                   isValid={touched.participants && !errors.participants}
                 />
-                <ErrorMessage name='participants'>
+                <ErrorMessage name="participants">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
 
-            <Form.Group className='mb-3'>
+            <Form.Group className="mb-3">
               <Form.Label>Special Request</Form.Label>
               <Form.Control
-                as='textarea'
+                as="textarea"
                 rows={3}
-                name='specialRequest'
+                name="specialRequest"
                 value={values.specialRequest}
                 onChange={handleChange}
                 isValid={touched.specialRequest && !errors.specialRequest}
               />
-              <ErrorMessage name='specialRequest'>
+              <ErrorMessage name="specialRequest">
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>

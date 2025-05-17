@@ -46,8 +46,8 @@ export default function Mains({ meals, type }) {
   return (
     <>
       <Modal
-        aria-labelledby='transition-modal-title'
-        aria-describedby='transition-modal-description'
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
         className={modalClasses.modal}
         open={open}
         onClose={handleClose}
@@ -58,11 +58,11 @@ export default function Mains({ meals, type }) {
         }}
       >
         <Fade in={open}>
-          <div className='centerContainer'>
-            <div className='vertical-center'>
+          <div className="centerContainer">
+            <div className="vertical-center">
               <Paper style={{ flex: 1 }}>
                 <div>
-                  <h2 id='transition-modal-title'>
+                  <h2 id="transition-modal-title">
                     {modalMeal !== null ? modalMeal.name : ""}
                   </h2>
                   <NextImage
@@ -70,7 +70,7 @@ export default function Mains({ meals, type }) {
                     width={800}
                     height={800}
                   />
-                  <p id='transition-modal-description'>
+                  <p id="transition-modal-description">
                     {modalMeal !== null ? modalMeal.description : ""}
                   </p>
                 </div>
@@ -80,10 +80,10 @@ export default function Mains({ meals, type }) {
         </Fade>
       </Modal>
 
-      <section className='mains'>
+      <section className="mains">
         <br />
 
-        <h2 className='extras-heading' style={{}}>
+        <h2 className="extras-heading" style={{}}>
           Aamari Menu
         </h2>
         {allCategories.map((category) => (
@@ -91,7 +91,7 @@ export default function Mains({ meals, type }) {
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon style={{ color: "#d1442e" }} />}
-                aria-controls='panel1a-content'
+                aria-controls="panel1a-content"
                 id={category}
                 style={{ margin: 5 }}
               >
@@ -101,20 +101,20 @@ export default function Mains({ meals, type }) {
                 .filter((meal) => meal.category === category)
                 .map((meal) => (
                   <AccordionDetails key={meal.name}>
-                    <article className='menu-item' key={meal.name}>
+                    <article className="menu-item" key={meal.name}>
                       <h5
                         onClick={() => {
                           setModalMeal(meal);
                           handleOpen();
                         }}
                         style={{ fontWeight: "bold", cursor: "pointer" }}
-                        className='mains-name'
+                        className="mains-name"
                       >
                         {meal.name}
                       </h5>
                       <Input type={type} name={meal.name} index={meal.id} />
-                      <strong className='mains-price'>
-                        Mk {meal.price.toLocaleString("en-us")}
+                      <strong className="mains-price">
+                        $ {meal.price.toLocaleString("en-us")}
                       </strong>
                       {/* <p className='mains-description'>{meal.description}</p> */}
                     </article>

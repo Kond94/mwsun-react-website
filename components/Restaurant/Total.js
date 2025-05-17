@@ -21,19 +21,19 @@ export default function Total() {
   }, 0);
 
   return (
-    <div className='total'>
-      <span className='total-title'>Total:</span>
-      <span className='total-price'>
-        Mk {totalPrice.toLocaleString("en-us")}
+    <div className="total">
+      <span className="total-title">Total:</span>
+      <span className="total-price">
+        $ {totalPrice.toLocaleString("en-us")}
       </span>
-      <Fab variant='extended' size='small' color='primary' aria-label='add'>
+      <Fab variant="extended" size="small" color="primary" aria-label="add">
         Send
       </Fab>
       <Fab
-        variant='extended'
-        size='small'
-        color='primary'
-        aria-label='add'
+        variant="extended"
+        size="small"
+        color="primary"
+        aria-label="add"
         onClick={() => router.push("/Catering")}
       >
         close

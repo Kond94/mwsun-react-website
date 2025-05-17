@@ -290,7 +290,7 @@ function Form() {
                   : false,
               participants:
                 formData.bookingType == "Package" ? data.participants : false,
-              quotedAmount: "Mk: " + data.totalPrice.toLocaleString("en-US"),
+              quotedAmount: "$: " + data.totalPrice.toLocaleString("en-US"),
             })
             .then((response) => {
               console.log(response);
@@ -303,9 +303,6 @@ function Form() {
         setFormData({ ...formData, form: "pay" });
         notify();
         setIsSubmitting(false);
-    
-
-       
       } catch (error) {
         setIsSubmitting(false);
         console.log(error);
@@ -319,7 +316,7 @@ function Form() {
   return (
     <div style={{ textAlign: "center", margin: 20 }}>
       <Script
-        src='https://nbm.gateway.mastercard.com/static/checkout/checkout.min.js'
+        src="https://nbm.gateway.mastercard.com/static/checkout/checkout.min.js"
         complete={() => {
           console.log("Done");
         }}
@@ -330,7 +327,7 @@ function Form() {
 
       {formData.form !== "bookingType" && (
         <Button
-          variant='outlined'
+          variant="outlined"
           onClick={() => setFormData({ ...formData, form: previousForm })}
           style={{ margin: 10, marginTop: 50, width: "100%" }}
         >
@@ -339,14 +336,14 @@ function Form() {
       )}
       <Button
         disabled={isSubmitting}
-        color='primary'
-        variant='contained'
-        type='submit'
+        color="primary"
+        variant="contained"
+        type="submit"
         onClick={handleSubmit}
         style={{ margin: 10, width: "100%" }}
       >
         {isSubmitting ? (
-          <span className='spinner-border spinner-border-sm mr-1'></span>
+          <span className="spinner-border spinner-border-sm mr-1"></span>
         ) : formData.form !== "pay" ? (
           "Next"
         ) : (

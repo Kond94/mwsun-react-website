@@ -73,16 +73,16 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
     { id: 3, name: "All Day" },
   ];
   return (
-    <div className='contact__modal'>
+    <div className="contact__modal">
       <h3 style={{ margin: 40 }}>Review Your {formData.bookingType} Booking</h3>
 
-      <Detail title='Name' data={formData.name} />
-      <Detail title='Email' data={formData.email} />
-      <Detail title='Phone' data={formData.phone} />
+      <Detail title="Name" data={formData.name} />
+      <Detail title="Email" data={formData.email} />
+      <Detail title="Phone" data={formData.phone} />
       {formData.bookingType === "Accommodation" ? (
         <>
           <Detail
-            title='Room'
+            title="Room"
             data={
               formData.room !== null
                 ? rooms.find((room) => room.id == formData.room).name
@@ -90,9 +90,9 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             }
           />
           <Detail
-            title='Price'
+            title="Price"
             data={
-              "Mk " + formData.room !== null
+              "$ " + formData.room !== null
                 ? rooms
                     .find((room) => room.id == formData.room)
                     .price.toString()
@@ -100,15 +100,15 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
                 : ""
             }
           />
-          <Detail title='Arrival' data={formData.arrivalDate.toDateString()} />
+          <Detail title="Arrival" data={formData.arrivalDate.toDateString()} />
           <Detail
-            title='Departure'
+            title="Departure"
             data={formData.departureDate.toDateString()}
           />
-          <Detail title='Adults' data={formData.adults} />
-          <Detail title='Children (39,500 each)' data={formData.children} />
+          <Detail title="Adults" data={formData.adults} />
+          <Detail title="Children (39,500 each)" data={formData.children} />
           <Detail
-            title='Nights'
+            title="Nights"
             data={Math.round(
               Math.abs(
                 (formData.arrivalDate - formData.departureDate) / 86400000
@@ -116,9 +116,9 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             )}
           />
           <Detail
-            title='Total Amount'
+            title="Total Amount"
             data={
-              "Mk " +
+              "$ " +
               (
                 Math.round(
                   Math.abs(
@@ -145,11 +145,11 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
       {formData.bookingType === "Conferencing" ? (
         <>
           <Detail
-            title='Commencement Date'
+            title="Commencement Date"
             data={formData.commencementDate.toDateString()}
           />
           <Detail
-            title='Commencement Time'
+            title="Commencement Time"
             data={
               times.find(
                 (time) =>
@@ -158,15 +158,15 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             }
           />
           <Detail
-            title='Conference Room'
+            title="Conference Room"
             data={
               formData.room !== null
                 ? conferenceRooms.find((room) => room.id == formData.room).name
                 : ""
             }
           />
-          <Detail title='Participants' data={formData.participants} />
-          <Detail title='Duration (Days)' data={formData.numberOfDays} />
+          <Detail title="Participants" data={formData.participants} />
+          <Detail title="Duration (Days)" data={formData.numberOfDays} />
         </>
       ) : (
         <></>
@@ -175,24 +175,24 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
       {formData.bookingType === "Banqueting" ? (
         <>
           <Detail
-            title='Date'
+            title="Date"
             data={formData.commencementDate.toDateString()}
           />
           <Detail
-            title='Time'
+            title="Time"
             data={
               times.find((time) => time.id == formData.commencementTime).name
             }
           />
           <Detail
-            title='Banquet Room'
+            title="Banquet Room"
             data={
               formData.room !== null
                 ? banquetRooms.find((room) => room.id == formData.room).name
                 : ""
             }
           />
-          <Detail title='Participants' data={formData.participants} />
+          <Detail title="Participants" data={formData.participants} />
         </>
       ) : (
         <></>
@@ -201,11 +201,11 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
       {formData.bookingType === "Package" ? (
         <>
           <Detail
-            title='Date'
+            title="Date"
             data={formData.commencementDate.toDateString()}
           />
           <Detail
-            title='Package'
+            title="Package"
             data={
               formData.package !== null
                 ? packages.find(
@@ -215,7 +215,7 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             }
           />
           <Detail
-            title='Price per participant'
+            title="Price per participant"
             data={
               formData.package !== null
                 ? "$" +
@@ -226,19 +226,19 @@ function Confirm({ formData, setPreviousForm, setNextForm, setFormData }) {
             }
           />
           <Detail
-            title='Total Price'
+            title="Total Price"
             data={
               formData.package !== null
                 ? "$" + formData.participants * formData.packagePrice
                 : ""
             }
           />
-          <Detail title='Participants' data={formData.participants} />
+          <Detail title="Participants" data={formData.participants} />
         </>
       ) : (
         <></>
       )}
-      <Detail title='Special Request' data={formData.specialRequest} />
+      <Detail title="Special Request" data={formData.specialRequest} />
     </div>
   );
 }

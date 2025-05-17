@@ -34,7 +34,7 @@ const DatePickerField = ({ ...props }) => {
       }}
       customInput={
         <Form.Control
-          type='text'
+          type="text"
           value={(field.value && new Date(field.value)) || null}
           isValid={props.touched[props.name] && !props.errors[props.name]}
         />
@@ -81,16 +81,16 @@ const BanquetingBookingForm = ({ formData, setFormData }) => {
             }}
             onBlur={handleBlur}
           >
-            <Row className='mb-3'>
+            <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Date</Form.Label>
                 <br />
                 <DatePickerField
-                  name='commencementDate'
+                  name="commencementDate"
                   touched={touched}
                   errors={errors}
                 />
-                <ErrorMessage name='commencementDate'>
+                <ErrorMessage name="commencementDate">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
@@ -99,10 +99,10 @@ const BanquetingBookingForm = ({ formData, setFormData }) => {
                 <br />
 
                 <Form.Select
-                  id='commencementTime'
+                  id="commencementTime"
                   isValid={touched.commencementTime && !errors.commencementTime}
                   value={values.commencementTime}
-                  name='commencementTime'
+                  name="commencementTime"
                   onChange={handleChange}
                 >
                   <option key={1} value={"Morning"}>
@@ -115,58 +115,58 @@ const BanquetingBookingForm = ({ formData, setFormData }) => {
                     All Day
                   </option>
                 </Form.Select>
-                <ErrorMessage name='commencementTime'>
+                <ErrorMessage name="commencementTime">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
-            <Form.Group as={Col} controlId='room'>
+            <Form.Group as={Col} controlId="room">
               <Form.Label>Banquet Room</Form.Label>
               <Form.Select
-                id='room'
+                id="room"
                 isValid={touched.room && !errors.room}
                 value={values.room}
-                name='room'
+                name="room"
                 onChange={handleChange}
               >
                 {banquetRooms.map((room) => (
                   <option key={room.id.toString()} value={room.id}>
-                    {room.name} (Mk{room.price.toLocaleString("en-US")})
+                    {room.name} (${room.price.toLocaleString("en-US")})
                   </option>
                 ))}
               </Form.Select>
-              <ErrorMessage name='room'>
+              <ErrorMessage name="room">
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>
             <br />
-            <Row className='mb-4'>
+            <Row className="mb-4">
               <Form.Group as={Col}>
                 <Form.Label>Participants (Number)</Form.Label>
                 <Form.Control
-                  type='number'
-                  name='participants'
+                  type="number"
+                  name="participants"
                   value={values.participants}
                   onChange={handleChange}
                   isValid={touched.participants && !errors.participants}
                 />
-                <ErrorMessage name='participants'>
+                <ErrorMessage name="participants">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
 
-            <Form.Group className='mb-3'>
+            <Form.Group className="mb-3">
               <Form.Label>Special Request</Form.Label>
               <Form.Control
-                as='textarea'
+                as="textarea"
                 rows={3}
-                name='specialRequest'
+                name="specialRequest"
                 value={values.specialRequest}
                 onChange={handleChange}
                 isValid={touched.specialRequest && !errors.specialRequest}
               />
-              <ErrorMessage name='specialRequest'>
+              <ErrorMessage name="specialRequest">
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>

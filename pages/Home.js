@@ -14,6 +14,7 @@ import Packages from "../components/Packages/Packages";
 import Parallax from "/components/Parallax/Parallax.js";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+import TripAdvisorWidget from "../components/TripAdvisorWidget/TripAdvisorWidget";
 import VideoPopup from "../components/VideoPopup/VideoPopup";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -35,54 +36,54 @@ export default function Home(props) {
     <div>
       <HeadMeta metaTitle={"Blantyre's Best & Most Popular Hotel"} />
       <Header
-        brand='Malawi Sun Hotel'
+        brand="Malawi Sun Hotel"
         rightLinks={<HeaderLinks />}
         fixed
-        color='transparent'
+        color="transparent"
         changeColorOnScroll={{
           height: 50,
           color: "white",
         }}
         {...rest}
       />
-      <Parallax filter image='/img/mwsun_header2.jpg'>
-        <VideoPopup videoId='UofeKQJEt1E' />
+      <Parallax filter image="/img/mwsun_header2.jpg">
+        <VideoPopup videoId="UofeKQJEt1E" />
 
         <div className={classes.container}>
-          <div className='slider__shape'>
+          <div className="slider__shape">
             <NextImage
               width={800}
               height={800}
-              className='shape triangle'
-              src='/assets/img/icon/slider/triangle.png'
-              alt='triangle'
+              className="shape triangle"
+              src="/assets/img/icon/slider/triangle.png"
+              alt="triangle"
             />
             <NextImage
               width={800}
               height={800}
-              className='shape dotted-square'
-              src='/assets/img/icon/slider/dotted-square.png'
-              alt='dotted-square'
+              className="shape dotted-square"
+              src="/assets/img/icon/slider/dotted-square.png"
+              alt="dotted-square"
             />
             <NextImage
               width={800}
               height={800}
-              className='shape solid-square'
-              src='/assets/img/icon/slider/solid-square.png'
-              alt='solid-square'
+              className="shape solid-square"
+              src="/assets/img/icon/slider/solid-square.png"
+              alt="solid-square"
             />
             <NextImage
               width={800}
               height={800}
-              className='shape circle'
-              src='/assets/img/icon/slider/circle.png'
-              alt='circle'
+              className="shape circle"
+              src="/assets/img/icon/slider/circle.png"
+              alt="circle"
             />
           </div>
-          <div className='container h1_slider_wrapper'>
-            <div className='row'>
-              <div className='col-xl-9 col-lg-9 col-md-10 col-sm-9'>
-                <div className='slider__content'>
+          <div className="container h1_slider_wrapper">
+            <div className="row">
+              <div className="col-xl-9 col-lg-9 col-md-10 col-sm-9">
+                <div className="slider__content">
                   <span
                     style={{
                       color: "##f0f0f0",
@@ -98,10 +99,10 @@ export default function Home(props) {
                   >
                     Malawi Sun Hotel
                   </h1>
-                  <div className='slider__btn'>
+                  <div className="slider__btn">
                     <button
                       onClick={() => setIsVideoOpen(true)}
-                      className='slider__play-btn'
+                      className="slider__play-btn"
                     >
                       <i>
                         <FiPlay />{" "}
@@ -118,18 +119,14 @@ export default function Home(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <FavoriteRooms promotionRooms={promotionRooms} />
+
+        {/* TripAdvisor Widget - Using dedicated component */}
+        <TripAdvisorWidget />
+
         <div style={{ display: "flex", justifyContent: "center" }}>
           <span
             style={{ color: "black", textAlign: "center", flex: 1 }}
-            className='mh-20'
-          >
-            In each of our rooms you will find:
-          </span>
-        </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <span
-            style={{ color: "black", textAlign: "center", flex: 1 }}
-            className='mh-20 mt-10'
+            className="mh-20 mt-10"
           >
             🕕 A 24-hour front desk
           </span>
@@ -137,7 +134,7 @@ export default function Home(props) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <span
             style={{ color: "black", textAlign: "center", flex: 1 }}
-            className='mh-20 mt-10'
+            className="mh-20 mt-10"
           >
             🧹 Daily housekeeping included in the room rate
           </span>
@@ -145,7 +142,7 @@ export default function Home(props) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <span
             style={{ color: "black", textAlign: "center", flex: 1 }}
-            className='mh-20 mt-10'
+            className="mh-20 mt-10"
           >
             🛀🏼 Private bathroom for each unit
           </span>
@@ -153,7 +150,7 @@ export default function Home(props) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <span
             style={{ color: "black", textAlign: "center", flex: 1 }}
-            className='mh-20 mt-10'
+            className="mh-20 mt-10 mb-30"
           >
             🤏🏼 If there is a minimum-stay requirement, it must be no more than 3
             nights

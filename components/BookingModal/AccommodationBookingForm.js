@@ -41,7 +41,7 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
         }}
         customInput={
           <Form.Control
-            type='text'
+            type="text"
             value={(field.value && new Date(field.value)) || null}
             isValid={props.touched[props.name] && !props.errors[props.name]}
           />
@@ -84,17 +84,17 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
             }}
             onBlur={handleBlur}
           >
-            <Row className='mb-3'>
+            <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Arrival Date</Form.Label>
                 <br />
                 <DatePickerField
-                  name='arrivalDate'
+                  name="arrivalDate"
                   touched={touched}
                   errors={errors}
                   minDate={today}
                 />
-                <ErrorMessage name='arrivalDate'>
+                <ErrorMessage name="arrivalDate">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
@@ -103,46 +103,46 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
                 <br />
 
                 <DatePickerField
-                  name='departureDate'
+                  name="departureDate"
                   touched={touched}
                   errors={errors}
                   minDate={values.arrivalDate}
                 />
-                <ErrorMessage name='departureDate'>
+                <ErrorMessage name="departureDate">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
-            <Form.Group as={Col} controlId='room'>
+            <Form.Group as={Col} controlId="room">
               <Form.Label>Room Type</Form.Label>
               <Form.Select
-                id='room'
+                id="room"
                 isValid={touched.room && !errors.room}
                 value={values.room}
-                name='room'
+                name="room"
                 onChange={handleChange}
               >
                 {rooms.map((room) => (
                   <option key={room.id.toString()} value={room.id}>
-                    {room.name} (Mk{room.price.toLocaleString("en-US")})
+                    {room.name} (${room.price.toLocaleString("en-US")})
                   </option>
                 ))}
               </Form.Select>
-              <ErrorMessage name='room'>
+              <ErrorMessage name="room">
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>
-            <Row className='mb-4'>
+            <Row className="mb-4">
               <Form.Group as={Col}>
                 <Form.Label>Adults</Form.Label>
                 <Form.Control
-                  type='number'
-                  name='adults'
+                  type="number"
+                  name="adults"
                   value={values.adults}
                   onChange={handleChange}
                   isValid={touched.adults && !errors.adults}
                 />
-                <ErrorMessage name='adults'>
+                <ErrorMessage name="adults">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
@@ -150,29 +150,29 @@ const AccommodationBookingForm = ({ formData, setFormData }) => {
               <Form.Group as={Col}>
                 <Form.Label>Children (39,500 each)</Form.Label>
                 <Form.Control
-                  type='number'
-                  name='children'
+                  type="number"
+                  name="children"
                   value={values.children}
                   onChange={handleChange}
                   isValid={touched.children && !errors.children}
                 />
-                <ErrorMessage name='children'>
+                <ErrorMessage name="children">
                   {(msg) => <div style={{ color: "red" }}>{msg}</div>}
                 </ErrorMessage>
               </Form.Group>
             </Row>
 
-            <Form.Group className='mb-3'>
+            <Form.Group className="mb-3">
               <Form.Label>Special Request</Form.Label>
               <Form.Control
-                as='textarea'
+                as="textarea"
                 rows={3}
-                name='specialRequest'
+                name="specialRequest"
                 value={values.specialRequest}
                 onChange={handleChange}
                 isValid={touched.specialRequest && !errors.specialRequest}
               />
-              <ErrorMessage name='specialRequest'>
+              <ErrorMessage name="specialRequest">
                 {(msg) => <div style={{ color: "red" }}>{msg}</div>}
               </ErrorMessage>
             </Form.Group>

@@ -36,16 +36,16 @@ const CardListItem = ({ item, slug }) => {
             style={{ position: "relative", cursor: "pointer" }}
           >
             <NextImage
-              className='grow'
+              className="grow"
               src={item.displayPhoto.url}
               title={item.name}
               width={"100vh"}
               height={"80vh"}
-              layout='responsive'
+              layout="responsive"
               style={{
                 boxShadow: "20px 20px 20px #e2e2e2",
               }}
-              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <Paper
               style={{
@@ -56,7 +56,7 @@ const CardListItem = ({ item, slug }) => {
                 fontWeight: "bold",
               }}
             >
-              MK {item.price.toLocaleString("en-US")}
+              $ {item.price.toLocaleString("en-US")}
             </Paper>
           </div>
         </GridItem>
@@ -69,10 +69,10 @@ const CardListItem = ({ item, slug }) => {
                 }
                 style={{ position: "relative", cursor: "pointer" }}
               >
-                <Typography gutterBottom variant='h5' component='h2'>
+                <Typography gutterBottom variant="h5" component="h2">
                   The {item.name}
                 </Typography>
-                <Typography variant='body2' color='textSecondary' component='p'>
+                <Typography variant="body2" color="textSecondary" component="p">
                   {item.description
                     .substr(0, 140)
                     .substr(
@@ -88,9 +88,9 @@ const CardListItem = ({ item, slug }) => {
                 onClick={() =>
                   router.push("/" + path + "/" + slugify(item.name))
                 }
-                color='default'
+                color="default"
                 label={"see more"}
-                size='small'
+                size="small"
               />
               <br />
               <div style={{ marginTop: 40 }}>
@@ -100,7 +100,7 @@ const CardListItem = ({ item, slug }) => {
                     setShowBookingModal(true);
                     setFormState({ ...formState, room: item.id });
                   }}
-                  color='mwsun'
+                  color="mwsun"
                 >
                   Book Room
                 </Button>

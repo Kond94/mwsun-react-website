@@ -11,7 +11,7 @@ const PayForm = ({ formData, setPreviousForm }) => {
       axios
         .post("https://itec-mw-api.onrender.com/make-payment", {
           amount: formData.amount,
-          currency: "MWK",
+          currency: "$",
           description: formData.name + " Accommodation Booking",
         })
         .then((response) => {
@@ -59,7 +59,7 @@ const PayForm = ({ formData, setPreviousForm }) => {
   }, [formData.form]);
 
   return (
-    <div className='contact__modal'>
+    <div className="contact__modal">
       <h3 style={{ margin: 40 }}>Payment</h3>
       <p>
         Your booking has been made. If you would like to pay using your Debit or
@@ -68,13 +68,13 @@ const PayForm = ({ formData, setPreviousForm }) => {
       </p>
       {loading ? (
         <>
-          <span className='spinner-border spinner-border-sm mr-1'></span>
+          <span className="spinner-border spinner-border-sm mr-1"></span>
           <p>Loading Payment Form</p>
         </>
       ) : (
         <></>
       )}
-      <div id='embed-target'></div>
+      <div id="embed-target"></div>
     </div>
   );
 };
